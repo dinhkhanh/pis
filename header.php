@@ -9,7 +9,10 @@
  * @subpackage Twenty_Eleven
  * @since Twenty Eleven 1.0
  */
-
+if (!is_user_logged_in()) {
+    header('Location: '.wp_login_url(home_url()));
+// You page code goes here
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 6]>
@@ -34,11 +37,29 @@
 <meta property="og:title" content="<?php wp_title( '' ); ?>" />
 <meta property="og:image" content="<?php if ( is_singular() && has_post_thumbnail($post->ID)): $url= wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150,150) ); echo $url['0']; else: echo theme_dir . '/img/avt.jpg'; endif; ?>" />
 <meta itemprop="name" content="<?php wp_title( '' ); ?>">
-<meta itemprop="description" content="<?php if (is_singular()): echo get_excerpt_by_id($post->ID, 40); else : echo 'Gọi là Mốc, Gốc Hà Tĩnh, Sinh Đăk Lăk, Lớn Đăk Nông, Sống Sài Gòn, đang lon ton ở Đà Nẵng. Là Social Media Executive tại VNG Corporation.'; endif;?>">
+<meta itemprop="description" content="<?php if (is_singular()): echo get_excerpt_by_id($post->ID, 40); else : echo 'Place Information System'; endif;?>">
 <meta itemprop="image" content="<?php if ( is_singular() && has_post_thumbnail($post->ID)): $url= wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150,150) ); echo $url['0']; else: echo theme_dir . '/img/avt.jpg'; endif; ?>">
-<title>
-<?php wp_title( '' ); ?>
-</title>
+<title><?php
+	/*
+	 * Print the <title> tag based on what is being viewed.
+	 */
+	global $page, $paged;
+
+	wp_title( '|', true, 'right' );
+
+	// Add the blog name.
+	bloginfo( 'name' );
+
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		echo " | $site_description";
+
+	// Add a page number if necessary:
+	if ( $paged >= 2 || $page >= 2 )
+		echo ' | ' . sprintf( __( 'Page %s', 'pis' ), max( $paged, $page ) );
+
+	?></title>
 <link href="https://plus.google.com/117861443762606356548" rel="publisher" />
 <link href="https://plus.google.com/117861443762606356548" rel="author" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
@@ -58,45 +79,15 @@
 <nav id="colophon" role="contentinfo">
 <div class="nav-wrapper">
   <ul class="notify_bar aligncenter">
-    <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
-    <!--<li class="notifications notify_icon">
-      <h3 id="recent_comment_icon">Bình luận mới</h3>
-      <?php //get_recent_comments();?>
-    </li>-->
+    <li class="notifications notify_icon"> <a href="<?php echo get_home_url(); ?>"><h3 id="logo">PIS</h3></a> </li>
     <li class="notifications notify_icon">
       <h3 id="recent_post_icon">Bài viết mới</h3>
       <?php dk_recent_posts();?>
     </li>
-    <li class="notifications notify_icon">
-      <h3 id="dk_social_links_icon">
-        Connecting
-      </h3>
-      <?php echo_dk_social_links();?> </li>
-      
-    <li class="notifications notify_icon large-link">
-    	<h3><a href="<?php echo home_url(); ?>/about">Lời ngỏ</a></h3>
-    </li>
-    <li class="notifications notify_icon large-link">
-    	<h3><a href="<?php echo home_url(); ?>/timeline">Tiểu sử</a></h3>
-    </li>
-    <!-- <li class="notifications notify_icon">
-      <h3 id="contact_form_icon">Viết cảm nhận</h3>
-      <?php //contact_form();?>
-    </li>-->
-    <li class="notifications notify_icon">
-      <?php //if you do not use W3 Total Cache, use dk_random_post_no_cache_plugin function
-				//if you use W3 Total Cache, use Random Post template instead
-				//dk_random_post_no_cache_plugin();
-				dk_random_post_cache_plugin();
-			?>
-    </li>
-    <li class="notifications notify_icon">
-    	<h3>Gió mang tôi đi tìm em</h3>
-    </li>
   </ul>
   <!--
    <h3 id='dolly'></h3>
---> 
+-->
 </div>
 </nav>
 <div id="page" class="hfeed">
@@ -115,13 +106,14 @@
   <!--
   <nav id="access" role="navigation">
   </nav>
-  <!-- #access --> 
-  
+  <!-- #access -->
+
 </header>
 <!-- #branding -->
 
 <div id="main">
-<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+    <iframe width="1000" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Da+Nang,+Vietnam&amp;aq=0&amp;oq=Da+na&amp;sll=37.0625,-95.677068&amp;sspn=60.806372,135.263672&amp;ie=UTF8&amp;hq=&amp;hnear=Thanh+Kh%C3%AA,+Da+Nang,+Vietnam&amp;t=m&amp;ll=16.051587,108.214903&amp;spn=0.02887,0.085831&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+<!--<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 		<div class="jp-audio-container">
 			<div class="jp-audio">
 				<div class="jp-type-single">
@@ -147,7 +139,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-<?php echo get_slide(); 
-echo user_profile();
+		</div>-->
+<?php //echo get_slide();
+//echo user_profile();
 ?>

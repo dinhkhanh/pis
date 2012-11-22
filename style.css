@@ -1,8 +1,8 @@
 /*
-Theme Name: Moc
-Description: A hardcode theme by Moc
+Theme Name: PIS
+Description: A hardcode theme by PIS TEAM
 Author: Tran Dinh Khanh
-AUTHOR URI: http://dinhkhanh.dk/
+AUTHOR URI: http://cmucapstone.com
 Version: 1.0 beta
 */
 
@@ -651,6 +651,9 @@ input#s {
 	margin: 0 0 0 0;
 	max-width: 229px;
 }
+.home #sidebar {
+    width: 219px;
+}
 .widget {
 	margin: 0 0;
 	padding: 0 0 20px 2.2em;
@@ -690,6 +693,9 @@ input#s {
 	line-height: 1.625em;
 	position: relative;
 }
+.home .single #content, .home .single #content, #content {
+        width: 780px;
+}
 .single .entry-header, .single .entry-content, .single footer.entry-meta {
 	width: 100%;
 }
@@ -726,9 +732,9 @@ input#s {
 }
 .entry-title {
 	color: #555;
-	font-size: 36px;
+	font-size: 22px;
 	font-weight: 100;
-	text-transform: lowercase;
+	text-transform: capitalize;
 	font-family: 'Segoe UI Light';
 	line-height: 1.5em;
 	padding-bottom: .3em;
@@ -844,8 +850,6 @@ img.post_thumb {
 	float: left;
 	margin-right: 20px;
 	padding: 5px;
-	width: 150px;
-	height: 150px;
 	border: 0 solid white;
 	filter: gray;
 	-webkit-filter: grayscale(1);
@@ -868,6 +872,11 @@ img.post_thumb:hover {
 	border-bottom: 1px solid #333;
 	overflow: hidden;
 	position: relative;
+}
+.home .hentry, .home .no-results, .home article.error404 {
+        width: 349px;
+        float: left;
+        margin-right: 1px;
 }
 .hentry:hover {
 	background: url(img/noise.png), #fefefe;
@@ -2076,6 +2085,7 @@ div.jp-jplayer {
 div.jp-jplayer {
 	background-color: #000000;
 }
+/*
 @media (max-width: 800px) {
 #main #content {
 	margin: 0 0;
@@ -2156,4 +2166,4 @@ img.post_thumb {
 .comments-link, .cat-links, .incr_number, .jp-audio-container {
 	display: none;
 }
-}
+}*/

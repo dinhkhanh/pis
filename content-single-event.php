@@ -35,8 +35,14 @@
 
   <div class="entry-content">
     <p style="font-family:Georgia; font-style:italic"><?php echo get_the_date(); ?>,</p>
+    <?php if (has_post_thumbnail( $post->ID ))
+			echo get_the_post_thumbnail( $post->ID, 'medium', array('class'=>'aligncenter event_thumb', 'title'=> trim(strip_tags( $post->post_title ))));
+		?>
+    <?php echo get_post_meta($post->ID, 'location', true); ?>
+    <?php echo get_post_meta($post->ID, 'address', true); ?>
     <?php the_content(); ?>
     <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:') . '</span>', 'after' => '</div>' ) ); ?>
+
   </div>
   <!-- .entry-content -->
 
@@ -59,7 +65,6 @@
       <?php echo dk_social_links(); ?> </div>
     <!-- #entry-author-info -->
     <?php endif; ?>
-    <?php echo dk_related_posts(); ?>
   </footer>
   <!-- .entry-meta -->
 
