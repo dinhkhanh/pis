@@ -5,7 +5,7 @@ Author: PIS Team
 Author URI: http://cmucapstone.com
 Description: Place Information System
 Version: 1.0
-License: All right reserved
+License: All right reserved.
 */
 
 /* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
@@ -2683,9 +2683,9 @@ p.comment-form-comment {
 	margin-right: 7.6%;
 }
 
-/* =IE8 
------------------------------------------------ */ 
- 
-#ie8 section.feature-image.large img { 
-	width: 100%; 
-} 
+/* =IE8
+----------------------------------------------- */
+
+#ie8 section.feature-image.large img {
+	width: 100%;
+}
