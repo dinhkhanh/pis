@@ -32,6 +32,9 @@
             <?php the_title(); ?>
       </a></h1>
     <?php endif; ?>
+      <?php if ( 'post' == get_post_type() ) : ?>
+      <span>News</span>
+    <?php endif; ?>
     <?php if ( 'place' == get_post_type() ) : ?>
       <span>Place</span>
     <?php endif; ?>
@@ -56,10 +59,15 @@
     </a>
     <?php the_excerpt(); ?>
       <?php if ( 'event' == get_post_type() ) : ?>
+      <p stylte="display: block; float: left;">Location:
       <?php echo get_post_meta($post->ID, 'location', true); ?>
+      <br/>
+      Start Date:
         <?php echo get_post_meta($post->ID, 'start_date', true); ?>
+      <br />
+      End Date:
       <?php echo get_post_meta($post->ID, 'end_date', true); ?>
-
+      </p>
       <?php endif; ?>
     <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>
   </div>
