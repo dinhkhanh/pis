@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer.
  *
@@ -8,28 +9,31 @@
  * @subpackage Twenty_Eleven
  * @since Twenty Eleven 1.0
  */
+
 ?>
 
-	</div><!-- #main -->
+</div>
+<!-- #main -->
 
-	<footer id="colophon" role="contentinfo">
-
-			<?php
-				/* A sidebar in the footer? Yep. You can can customize
-				 * your footer with three columns of widgets.
-				 */
-				if ( ! is_404() )
-					get_sidebar( 'footer' );
-			?>
-
-			<div id="site-generator">
-				<?php do_action( 'twentyeleven_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentyeleven' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentyeleven' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'twentyeleven' ), 'WordPress' ); ?></a>
-			</div>
-	</footer><!-- #colophon -->
-</div><!-- #page -->
-
+</div>
+<!-- #page -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22715401-1']);
+  _gaq.push(['_setDomainName', 'dinhkhanh.dk']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 <?php wp_footer(); ?>
-
-</body>
-</html>
+</body></html>
