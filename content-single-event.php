@@ -13,7 +13,7 @@
             <?php
             if (has_post_thumbnail($post->ID))
                 echo get_the_post_thumbnail($post->ID, 'large', array('class' => 'aligncenter event_thumb', 'title' => trim(strip_tags($post->post_title))));
-            else echo theme_dir .'/img/default_event.jpg';
+            else echo '<img class="aligncenter event_thumb" src="'.theme_dir .'/img/default_event.jpg" />';
             ?>
         </div>
         <div class="event-infos">

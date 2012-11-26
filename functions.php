@@ -307,7 +307,7 @@ function create_post_type() {
             'custom-fields',
             'revisions'),
         'show_in_nav_menus' => true,
-        'taxonomies' => array('category', 'post_tag')
+        'taxonomies' => array('places','post_tag', 'link_category')
             )
     );
     register_post_type('event', array(
@@ -326,7 +326,7 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
-        'rewrite' => array('slug' => 'event'),
+        'rewrite' => array('slug' => 'events'),
         'supports' => array('title',
             'author',
             'excerpt',
@@ -337,65 +337,58 @@ function create_post_type() {
             'custom-fields',
             'revisions'),
         'show_in_nav_menus' => true,
-        'taxonomies' => array('category', 'post_tag')
+        'taxonomies' => array('events', 'post_tag', 'link_category')
             )
     );
 }
 
 add_action('init', 'create_taxonomies', 0);
-add_action('init', 'taxonomy');
 
-function taxonomy() {
-    register_taxonomy_for_object_type('category', 'place');
-    register_taxonomy_for_object_type('post_tag', 'place');
-    register_taxonomy_for_object_type('category', 'event');
-    register_taxonomy_for_object_type('post_tag', 'event');
-}
 //create two taxonomies, genres and writers for the post type "book"
 function create_taxonomies() {
     // Add new taxonomy, make it hierarchical (like categories)
     $labels_place = array(
-        'name' => _x('Places', 'taxonomy general name'),
-        'singular_name' => _x('Place', 'taxonomy singular name'),
-        'search_items' => __('Search Places'),
-        'all_items' => __('All Places'),
-        'parent_item' => __('Parent Place'),
-        'parent_item_colon' => __('Parent Place:'),
-        'edit_item' => __('Edit Place'),
-        'update_item' => __('Update Place'),
-        'add_new_item' => __('Add New Place'),
-        'new_item_name' => __('New Place Name'),
+        'name' => _x('Place Categories', 'taxonomy general name'),
+        'singular_name' => _x('Place Category', 'taxonomy singular name'),
+        'search_items' => __('Search Places Category'),
+        'all_items' => __('All Places Category'),
+        'parent_item' => __('Parent Place Category'),
+        'parent_item_colon' => __('Parent Place Category:'),
+        'edit_item' => __('Edit Place Category'),
+        'update_item' => __('Update Place Category'),
+        'add_new_item' => __('Add New Place Category'),
+        'new_item_name' => __('New Place Name Category'),
         'menu_name' => __('Place Categories'),
     );
 
-    register_taxonomy('place', array('place'), array(
+    register_taxonomy('places', 'place', array(
         'hierarchical' => true,
         'labels' => $labels_place,
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array('slug' => 'place'),
+        'rewrite' => array('slug' => 'places'),
     ));
 
     $labels_event = array(
         'name' => _x('Events', 'taxonomy general name'),
         'singular_name' => _x('Event', 'taxonomy singular name'),
-        'search_items' => __('Search Events'),
-        'all_items' => __('All Events'),
-        'parent_item' => __('Parent Event'),
-        'parent_item_colon' => __('Parent Event:'),
-        'edit_item' => __('Edit Event'),
-        'update_item' => __('Update Event'),
-        'add_new_item' => __('Add New Event'),
+        'search_items' => __('Search Events Category'),
+        'all_items' => __('All Events Category'),
+        'parent_item' => __('Parent Event Category'),
+        'parent_item_colon' => __('Parent Event Category:'),
+        'edit_item' => __('Edit Event Category'),
+        'update_item' => __('Update Event Category'),
+        'add_new_item' => __('Add New Event Category'),
         'new_item_name' => __('New Event Name'),
         'menu_name' => __('Event Categories'),
     );
 
-    register_taxonomy('event', array('event'), array(
+    register_taxonomy('events', 'event', array(
         'hierarchical' => true,
         'labels' => $labels_event,
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array('slug' => 'event'),
+        'rewrite' => array('slug' => 'events'),
     ));
 }
 

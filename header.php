@@ -95,18 +95,18 @@
                     <li class="notifications notify_icon"><h3 id="logo">Places</h3>
                         <ul class="notify" id="place_bar">
                             <li><a href="<?php echo get_home_url(); ?>/places">All</a>
-                            <?php $places = get_categories('taxonomy=place');
+                            <?php $places = get_categories('taxonomy=places');
                                 foreach ($places as $place) : ?>
-                            <li><a href="<?php echo get_term_link($place->slug, 'place') ?>"><?php echo $place->name ?></a></li>
+                            <li><a href="<?php echo get_term_link($place->slug, 'places') ?>"><?php echo $place->name ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </li>
                     <li class="notifications notify_icon"> <h3 id="logo">Events</h3>
                         <ul class="notify" id="event_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/event">All</a></li>
-                            <?php $events = get_categories('taxonomy=event');
+                            <li><a href="<?php echo get_home_url(); ?>/events">All</a></li>
+                            <?php $events = get_categories('taxonomy=events');
                                 foreach ($events as $event) : ?>
-                            <li><a href="<?php echo get_term_link($event->slug, 'event') ?>"><?php echo $event->name ?></a></li>
+                            <li><a href="<?php echo get_term_link($event->slug, 'events') ?>"><?php echo $event->name ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </li>

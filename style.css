@@ -2450,7 +2450,7 @@ img.post_thumb {
     height: 125px;
 }
 .place th {
-    min-width: 150px;
+    width: 150px;
 }
 .single-place #sidebar {
     position: absolute;

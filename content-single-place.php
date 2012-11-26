@@ -48,7 +48,7 @@
             echo get_the_post_thumbnail($post->ID, 'medium', array('class' => 'alignleft place_thumb', 'title' => trim(strip_tags($post->post_title))));
 
         else
-            echo theme_dir . '/img/default_place.jpg';
+            echo '<img class="aligncenter place_thumb" src="'.theme_dir .'/img/default_place.jpg" />';
         ?>
         <div class="place_header">
             <h1 class="entry-title">
@@ -67,11 +67,11 @@
             <tr>
                 <th>Business type:</th>
                 <td><?php
-$categories = get_the_terms($post->ID, 'place');
+$categories = get_the_terms($post->ID, 'places');
 $separator = ' ';
 if ($categories) {
     foreach ($categories as $category) {
-        echo '<a href="' . get_term_link($category->slug, 'place') . '" title="' . esc_attr(sprintf(__("View all places in %s"), $category->name)) . '">' . $category->name . '</a>' . $separator;
+        echo '<a href="' . get_term_link($category->slug, 'places') . '" title="' . esc_attr(sprintf(__("View all places in %s"), $category->name)) . '">' . $category->name . '</a>' . $separator;
     }
 }
 ?></td>
