@@ -42,6 +42,6 @@
 		<p class="nocomments"><?php _e( 'Comments are closed.' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(array('title_reply'=>'Comments Make Me Happy', 'comment_notes_before' => '', 'comment_notes_after'=> '', 'title_reply_to' => '@%s')); ?>
+	<?php comment_form(array('title_reply'=>'Share your thoughts', 'comment_notes_before' => '', 'comment_notes_after'=> '', 'title_reply_to' => '@%s')); ?>
 
 </div><!-- #comments -->

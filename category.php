@@ -26,22 +26,24 @@ get_header(); ?>
         </h1>
       </header>
       <!-- .entry-header -->
-      
+
       <div class="entry-content">
         <p>
           <?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.' ); ?>
         </p>
         <?php get_search_form(); ?>
       </div>
-      <!-- .entry-content --> 
-      
+      <!-- .entry-content -->
+
     </article>
     <!-- #post-0 -->
-    
+
     <?php endif; ?>
   </div>
   <!-- #content -->
-  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+ <div id="footer">
+<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
+</div>
 </section>
 <!-- #primary -->
 

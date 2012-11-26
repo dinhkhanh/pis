@@ -23,25 +23,14 @@
       <h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark">
         <?php the_title(); ?>
         </a></h2>
-      <h3 class="entry-format">
-        <?php _e( 'Featured', 'twentyeleven' ); ?>
-      </h3>
+      <span class="bagde bagde-hot">Post</span>
     </hgroup>
     <?php else : ?>
     <h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark">
             <?php the_title(); ?>
       </a></h1>
+      <span class="bagde bagde-<?php echo get_post_type(); ?>">Post</span>
     <?php endif; ?>
-      <?php if ( 'post' == get_post_type() ) : ?>
-      <span>News</span>
-    <?php endif; ?>
-    <?php if ( 'place' == get_post_type() ) : ?>
-      <span>Place</span>
-    <?php endif; ?>
-    <?php if ( 'event' == get_post_type() ) : ?>
-      <span>Event</span>
-    <?php endif; ?>
-
   </header>
   <!-- .entry-header -->
 
@@ -57,7 +46,9 @@
 			echo get_the_post_thumbnail( $post->ID, 'thumbnail', array('class'=>'aligncenter post_thumb', 'title'=> trim(strip_tags( $post->post_title ))));
 		?>
     </a>
-    <?php the_excerpt(); ?>
+      <?php if ('post' == get_post_type()) {
+            the_excerpt();
+      }?>
       <?php if ( 'event' == get_post_type() ) : ?>
       <p stylte="display: block; float: left;">Location:
       <?php echo get_post_meta($post->ID, 'location', true); ?>

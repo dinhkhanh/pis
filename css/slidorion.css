@@ -1,0 +1,207 @@
+/* Slidorion Stylesheet */
+#slidorion {
+    width: 780px;			/* Set to slidorion width. Is equal to #slider + #accordion width */
+    height: 300px;			/* Set to slidorion height. Is equal to #slider and #accordion height */
+    position: relative;
+    margin-left: -20px;
+}
+
+#slider {
+    width: 500px;			/* Set to slider width */
+    height: 300px;			/* Set to slider height */
+    position: relative;
+    float: left;
+    overflow: hidden;		/* Hides the animations */
+}
+
+#slider > div {
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+.slide img.slide_thumb {
+    width: 500px;
+    height: 300px;
+}
+.slide-event-info {
+    position: absolute;
+    width: 70%;
+    bottom: 10px;
+    right: 10px;
+}
+.slide-event-info .event-infos {
+    background-color: rgba(10,10,10,.7);
+    border-top-width: 1px;
+}
+.slide-event-info .event-info {
+    font-weight:  normal;
+    font-size: 13px;
+    color: #fff;
+}
+.slide-event-info .event-info div {
+    border: none;
+}
+.slide-event-info .event-time > div > span {
+    font-size: 20px;
+}
+#accordion {
+    width: 280px;			/* Set to accordion width */
+    height: 300px;
+    position: relative;
+    z-index:999;
+    overflow: hidden;
+    float: left;
+}
+
+#accordion > .link-header {
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background: #0098d7;
+    margin-bottom: 1px;
+}
+
+#accordion > .link-header:first-child {
+    border-top:none;
+}
+
+#accordion > .link-header:hover {
+    background: #ededed;
+    cursor: pointer;
+    color: #333;
+}
+
+#accordion > .link-header.active {
+    border-bottom: none;
+    background: #e61e6c !important;
+    color: #fff;
+}
+
+#accordion > .link-content {
+    font-weight: normal;
+    font-size: 13px;
+    line-height:20px;
+    margin: 0;
+    padding: 16px;
+    border: none;
+    overflow:auto;
+}
+
+/********** NIVO SLIDER **************/
+/*
+ * jQuery Nivo Slider v3.1
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+*/
+
+/* The Nivo Slider styles */
+.nivoSlider {
+    position:relative;
+    width:100%;
+    height:auto;
+    overflow: hidden;
+}
+.nivoSlider img {
+    position:absolute;
+    top:0px;
+    left:0px;
+    max-width: none;
+}
+.nivo-main-image {
+    display: block !important;
+    position: relative !important;
+    width: 220px !important;
+    height: 220px !important;
+}
+
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    border:0;
+    padding:0;
+    margin:0;
+    z-index:6;
+    display:none;
+}
+/* The slices and boxes in the Slider */
+.nivo-slice {
+    display:block;
+    position:absolute;
+    z-index:5;
+    height:100%;
+    top:0;
+}
+.nivo-slice img {
+    width: 220px !important;
+    height: 220px !important;
+}
+.nivo-box {
+    display: none !important;
+    position:absolute;
+    z-index:5;
+    overflow:hidden;
+}
+.nivo-box img { display: none !important; }
+
+/* Caption styles */
+.nivo-caption {
+    display: none !important;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    background:#000;
+    color:#fff;
+    width:100%;
+    z-index:8;
+    padding: 5px 10px;
+    opacity: 0.8;
+    overflow: hidden;
+    display: none;
+    -moz-opacity: 0.8;
+    filter:alpha(opacity=8);
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.nivo-caption p {
+    padding:5px;
+    margin:0;
+}
+.nivo-caption a {
+    display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+    position:absolute;
+    top:45%;
+    z-index:9;
+    cursor:pointer;
+}
+.nivo-prevNav {
+    left:0px;
+}
+.nivo-nextNav {
+    right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav {
+    text-align:center;
+    padding: 15px 0;
+}
+.nivo-controlNav a {
+    cursor:pointer;
+}
+.nivo-controlNav a.active {
+    font-weight:bold;
+}

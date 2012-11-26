@@ -2,7 +2,7 @@
 get_header(); ?>
 <div id="primary">
   <div id="content" role="main">
-    <?php query_posts( array( 'post_type' => array( 'post', 'event', 'place' ) ) ); ?>
+    <?php query_posts( array( 'post_type' => array( 'post', 'event', 'place' ), 'orderby' => 'rand' ) ); ?>
     <?php if ( have_posts() ) : ?>
     <?php /* Start the Loop */ ?>
     <?php while ( have_posts() ) : the_post(); ?>
@@ -31,9 +31,10 @@ get_header(); ?>
     <?php endif; ?>
   </div>
 
-  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); wp_reset_query();?>
   <!-- #content -->
-
+<div id="footer">
+  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); wp_reset_query();?></div>
+</div>
 </div>
 <!-- #primary -->
 <?php get_sidebar(); ?>

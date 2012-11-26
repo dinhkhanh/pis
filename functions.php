@@ -7,12 +7,8 @@ register_nav_menu('secondary', __('Secondary Menu'));
 add_theme_support('post-thumbnails');
 
 function add_custom_meta_box() {
-    /*add_meta_box(
-            'custom_meta_box', 'Custom Meta Box', 'show_meta_box', 'post', 'normal', 'high');
-    add_meta_box(
-            'custom_meta_box', 'Custom Meta Box', 'show_meta_box', 'place', 'normal', 'high');8*/
-    add_meta_box(
-            'event_metabox', 'Event Details', 'show_event_meta_box', 'event', 'normal', 'high');
+    add_meta_box('custom_meta_box', 'Place Details', 'show_place_meta_box', 'place', 'normal', 'high');
+    add_meta_box('event_metabox', 'Event Details', 'show_event_meta_box', 'event', 'normal', 'high');
 }
 
 add_action('add_meta_boxes', 'add_custom_meta_box');
@@ -20,8 +16,11 @@ add_action('add_meta_boxes', 'add_custom_meta_box');
 function show_event_meta_box() {
     global $post;
     $start_date = get_post_meta($post->ID, 'start_date', true);
+    $start_time = get_post_meta($post->ID, 'start_time', true);
     $end_date = get_post_meta($post->ID, 'end_date', true);
+    $end_time = get_post_meta($post->ID, 'end_time', true);
     $location = get_post_meta($post->ID, 'location', true);
+    $host = get_post_meta($post->ID, 'host', true);
     echo '<form>';
     echo '<input type="hidden" name="custom_meta_box_nonce" value="' . wp_create_nonce(basename(__FILE__)) . '" />';
     echo '<table class="form-table">
@@ -29,26 +28,152 @@ function show_event_meta_box() {
             <th><label for="start_date">Start Date</label></th>
             <td>
                 <input type="date" required="required" name="start_date" id="start_date" value="' . $start_date . '"/>
+                    <br /><span class="description">When will this event start? *required</span>
+            </td>
+        </tr>';
+    echo '
+        <tr>
+            <th><label for="start_time">Start Time</label></th>
+            <td>
+                <input type="text" name="start_time" id="start_time" value="' . $start_time . '"/>
+                    <br /><span class="description">What time will this event start?</span>
             </td>
         </tr>';
     echo '<tr>
             <th><label for="end_date">End Date</label></th>
             <td>
                 <input type="date" required="required" name="end_date" id="end_date" value="' . $end_date . '" />
+                <br /><span class="description">When will this event end? *required</span>
+            </td>
+        </tr>';
+    echo '
+        <tr>
+            <th><label for="end_time">End Time</label></th>
+            <td>
+                <input type="text" name="end_time" id="end_time" value="' . $end_time . '"/>
+                    <br /><span class="description">What time will this event end?</span>
+            </td>
+        </tr>';
+    echo '<tr>
+            <th><label for="location">Host</label></th>
+            <td>
+                <input type="text" name="host" id="host" required="required" value="' . $host . '" />
+                    <br /><span class="description">Who host this event? *required</span>
             </td>
         </tr>';
     echo '<tr>
             <th><label for="location">Location</label></th>
             <td>
                 <input type="text" name="location" id="location" required="required" value="' . $location . '" />
+                    <br /><span class="description">Where will this event happen? *required</span>
             </td>
         </tr>';
     echo '</table>'; // end table
     echo '</form>';
 }
 
+function show_place_meta_box() {
+    global $post;
+    $location = get_post_meta($post->ID, 'location', true);
+    $pros = get_post_meta($post->ID, 'pros', true);
+    $cons = get_post_meta($post->ID, 'cons', true);
+    $website = get_post_meta($post->ID, 'website', true);
+    $open = get_post_meta($post->ID, 'open', true);
+    $phone = get_post_meta($post->ID, 'phone', true);
+    $menu = get_post_meta($post->ID, 'mainmenu', true);
+    $cost = get_post_meta($post->ID, 'cost', true);
+    $values = get_post_custom($post->ID);
+    $rating = isset($values['rating']) ? esc_attr($values['rating'][0]) : "";
+    $check = isset( $values['verified'] ) ? esc_attr( $values['verified'][0] ) : "";
+    ?>
+    <form>
+        <input type="hidden" name="custom_meta_box_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)); ?>" />
+        <table class="form-table">
+        <tr>
+            <th><label for="location">Address</label></th>
+            <td>
+                <input type="text" required="required" name="location" id="location" value="<?php echo $location; ?>"/>
+                    <br /><span class="description">Where is this place? *required</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="pros">Advantage</label></th>
+            <td>
+                <textarea type="text" required="required" name="pros" id="pros" value=""><?php echo $pros; ?></textarea>
+                    <br /><span class="description">What are this place\'s advantages? *required</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="cons">Weakness</label></th>
+            <td>
+                <textarea type="text" required="required" name="cons" id="cons" value="" ><?php echo $cons; ?></textarea>
+                <br /><span class="description">What are this place\'s disadvantages? *required</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="open">Open Hours</label></th>
+            <td>
+                <input type="text" name="open" id="open" required="required" value="<?php echo $open; ?>" />
+                    <br /><span class="description">Who host this event? *required</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="mainmenu">Main Menu</label></th>
+            <td>
+                <input type="text" name="mainmenu" id="mainmenu" value="<?php echo $menu; ?>" />
+                    <br /><span class="description">What are main menu of this place?</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="cost">Cost Range</label></th>
+            <td>
+                <input type="text" name="cost" id="cost" value="<?php echo $cost; ?>" />
+                    <br /><span class="description">What is cost range of this place?</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="website">Website</label></th>
+            <td>
+                <input type="text" name="website" id="website" value="<?php echo $website; ?>"/>
+                    <br />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="phone">Phone Number</label></th>
+            <td>
+                <input type="text" name="phone" id="phone" value="<?php echo $phone; ?>" />
+                    <br />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="rating">Rating</label>
+            </th>
+            <td>
+                <select name="rating" id="rating">
+                    <option value="1" <?php selected($rating, '1'); ?>>1</option>
+                    <option value="2" <?php selected($rating, '2'); ?>>2</option>
+                    <option value="3" <?php selected($rating, '3'); ?>>3</option>
+                    <option value="4" <?php selected($rating, '4'); ?>>4</option>
+                    <option value="5" <?php selected($rating, '5'); ?>>5</option>
+                </select>
+            </td>
+        </tr>
+        <?php
+    if(current_user_can('edit_others_posts')) { ?>
+        <tr>
+            <th> <label for="verifed">Verified?</label>  </th>
+            <td>
+                <input type="checkbox" id="verified" name="verified" <?php checked( $check, 'on' ); ?> />
+            </td>
+        </tr>
+        <?php }
+    echo '</table>'; // end table
+    echo '</form>';
+}
+
 // Save the Data
-function save_custom_meta() {
+function save_event_meta() {
     $post_id = $_POST['post_ID'];
     // verify nonce
     if (!wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))
@@ -63,20 +188,93 @@ function save_custom_meta() {
     } elseif (!current_user_can('edit_post', $post_id)) {
         return $post_id;
     }
-    $start_date = $_POST['start_date'];
-    add_post_meta($post_id, 'start_date', $start_date, true);
-    update_post_meta($post_id, 'start_date', $start_date);
+    if ('event' == $_POST['post_type']) {
+        $start_date = $_POST['start_date'];
+        add_post_meta($post_id, 'start_date', $start_date, true);
+        update_post_meta($post_id, 'start_date', $start_date);
 
-    $end_date = $_POST['end_date'];
-    add_post_meta($post_id, 'end_date', $end_date, true);
-    update_post_meta($post_id, 'end_date', $end_date);
+        $start_time = $_POST['start_time'];
+        add_post_meta($post_id, 'start_time', $start_time, true);
+        update_post_meta($post_id, 'start_time', $start_time);
 
-    $location = $_POST['location'];
-    add_post_meta($post_id, 'location', $location, true);
-    update_post_meta($post_id, 'location', $location);
+        $end_date = $_POST['end_date'];
+        add_post_meta($post_id, 'end_date', $end_date, true);
+        update_post_meta($post_id, 'end_date', $end_date);
+
+        $end_time = $_POST['end_time'];
+        add_post_meta($post_id, 'end_time', $end_time, true);
+        update_post_meta($post_id, 'end_time', $end_time);
+
+        $location = $_POST['location'];
+        add_post_meta($post_id, 'location', $location, true);
+        update_post_meta($post_id, 'location', $location);
+
+        $host = $_POST['host'];
+        add_post_meta($post_id, 'host', $host, true);
+        update_post_meta($post_id, 'host', $host);
+    }
 }
 
-add_action('save_post', 'save_custom_meta');
+function save_place_meta() {
+    $post_id = $_POST['post_ID'];
+    // verify nonce
+    if (!wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))
+        return $post_id;
+    // check autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return $post_id;
+    // check permissions
+    if ('page' == $_POST['post_type']) {
+        if (!current_user_can('edit_page', $post_id))
+            return $post_id;
+    } elseif (!current_user_can('edit_post', $post_id)) {
+        return $post_id;
+    }
+    if ('place' == $_POST['post_type']) {
+        $pros = $_POST['pros'];
+        add_post_meta($post_id, 'pros', $pros, true);
+        update_post_meta($post_id, 'pros', $pros);
+
+        $cons = $_POST['cons'];
+        add_post_meta($post_id, 'cons', $cons, true);
+        update_post_meta($post_id, 'cons', $cons);
+
+        $open = $_POST['open'];
+        add_post_meta($post_id, 'open', $open, true);
+        update_post_meta($post_id, 'open', $open);
+
+        $website = $_POST['website'];
+        add_post_meta($post_id, 'website', $website, true);
+        update_post_meta($post_id, 'website', $website);
+
+        $location = $_POST['location'];
+        add_post_meta($post_id, 'location', $location, true);
+        update_post_meta($post_id, 'location', $location);
+
+        $phone = $_POST['phone'];
+        add_post_meta($post_id, 'phone', $phone, true);
+        update_post_meta($post_id, 'phone', $phone);
+
+        $rating = $_POST['rating'];
+        add_post_meta($post_id, 'rating', $rating, true);
+        update_post_meta($post_id, 'rating', $rating);
+
+        $verified = $_POST['verified'];
+        add_post_meta($post_id, 'verified', $verified, true);
+        update_post_meta($post_id, 'verified', $verified);
+
+        $mainmenu = $_POST['mainmenu'];
+        add_post_meta($post_id, 'mainmenu', $mainmenu, true);
+        update_post_meta($post_id, 'mainmenu', $mainmenu);
+
+        $cost = $_POST['cost'];
+        add_post_meta($post_id, 'cost', $cost, true);
+        update_post_meta($post_id, 'cost', $cost);
+    }
+}
+
+add_action('save_post', 'save_event_meta');
+add_action('save_post', 'save_place_meta');
 
 
 add_action('init', 'create_post_type');
@@ -209,6 +407,26 @@ if (!function_exists('moc_widgets_init')):
 
     add_action('widgets_init', 'moc_widgets_init');
 endif;
+
+function place_post_thumbnail($postID) {
+    $args = array(
+        'post_type' => 'attachment',
+        'numberposts' => -1,
+        'post_status' => null,
+        'post_parent' => $postID
+    );
+    $attachments = get_posts($args);
+    if ($attachments) {
+        foreach ($attachments as $attachment) {
+            echo wp_get_attachment_image($attachment->ID, 'medium', array(
+	'src'	=> $src,
+	'class'	=> "place_slide",
+	'alt'   => trim(strip_tags( get_post_meta($attachment_id, '_wp_attachment_image_alt', true) )),
+	'title' => trim(strip_tags( $attachment->post_title ))));
+        }
+    }
+}
+
 if (!function_exists('glb_scripts_method')):
 
     function glb_scripts_method() {
@@ -222,13 +440,20 @@ if (!function_exists('glb_scripts_method')):
         wp_enqueue_script('transit', theme_dir . '/js/jquery.transit.min.js', NULL, NULL, true);
         wp_enqueue_script('grid', theme_dir . '/js/jquery.gridrotator.js', NULL, NULL, true);
         wp_enqueue_script('gridconf', theme_dir . '/js/grid.js', NULL, NULL, true);
+        wp_enqueue_script('nivo', theme_dir. '/js/jquery.nivo.slider.pack.js', NULL, NULL, true);
 
         if (is_single() || is_page()) {
-            wp_enqueue_script('jquerySingle', theme_dir . '/js/script.single.js', NULL, NULL, true);
+            //wp_enqueue_script('jquerySingle', theme_dir . '/js/script.single.js', NULL, NULL, true);
             wp_enqueue_script('jplayerconf', theme_dir . '/js/jplayer.config.single.js', NULL, NULL, true);
         } else {
             wp_enqueue_script('jplayerconf', theme_dir . '/js/jplayer.config.js', NULL, NULL, true);
+        }
+        if (is_home()) {
             wp_enqueue_script('masonryconf', theme_dir . '/js/masonry-conf.js', NULL, NULL, true);
+        }
+        if (is_archive()) {
+            wp_enqueue_script('slide', theme_dir . '/js/jquery.slidorion.min.js', NULL, NULL, true);
+            wp_enqueue_script('slideconf', theme_dir . '/js/slide.js', NULL, NULL, true);
         }
     }
 
@@ -251,6 +476,7 @@ if (!function_exists('favicon_link')):
     function favicon_link() {
         echo '<link rel="shortcut icon" type="image/x-icon" href="' . theme_dir . '/img/favicon.ico" />' . "\n";
         echo '<meta property="fb:admins" content="100000965423245" />';
+        echo '<link rel="stylesheet" type="text/css" href="' . theme_dir . '/css/slidorion.css" />';
         if (is_home()) {
             echo '<link rel="image_src" href="' . theme_dir . '/img/avt.jpg" />' . "\n";
         } //is_home()
@@ -348,16 +574,16 @@ if (!function_exists('get_slide')):
                                         ?>
                                     </div>
                                     <!-- .comment-author .vcard -->
-                                        <?php if ($comment->comment_approved == '0'): ?>
+                                    <?php if ($comment->comment_approved == '0'): ?>
                                         <em class="comment-awaiting-moderation">
-                                        <?php _e('Your comment is awaiting moderation.'); ?>
+                                            <?php _e('Your comment is awaiting moderation.'); ?>
                                         </em> <br />
                                     <?php endif; ?>
                                 </footer>
                                 <div class="comment-content">
-                                <?php comment_text(); ?>
+                                    <?php comment_text(); ?>
                                 </div>
-                                    <?php if (is_user_logged_in()): ?>
+                                <?php if (is_user_logged_in()): ?>
                                     <div class="reply">
                                         <?php
                                         comment_reply_link(array_merge($args, array(
@@ -368,7 +594,7 @@ if (!function_exists('get_slide')):
                                         ?>
                                     </div>
                                     <!-- .reply -->
-                            <?php endif; ?>
+                                <?php endif; ?>
                             </article>
                             <!-- #comment-## -->
                             <?php
@@ -430,7 +656,7 @@ if (!function_exists('get_slide')):
                     if ($wp_query->max_num_pages > 1) :
                         ?>
                         <nav id="<?php echo $nav_id; ?>">
-                        <?php next_posts_link(__('Xem thêm&hellip;')); ?>
+                            <?php next_posts_link(__('Xem thêm&hellip;')); ?>
                         </nav>
                         <!-- #nav-above -->
                         <?php
@@ -478,15 +704,15 @@ if (!function_exists('get_slide')):
                                         ?>
                                     </div>
                                     <!-- .comment-author .vcard -->
-                                        <?php if ($comment->comment_approved == '0'): ?>
+                                    <?php if ($comment->comment_approved == '0'): ?>
                                         <em class="comment-awaiting-moderation">
-                                        <?php _e('Your comment is awaiting moderation.'); ?>
+                                            <?php _e('Your comment is awaiting moderation.'); ?>
                                         </em> <br />
-                <?php endif; ?>
+                                    <?php endif; ?>
 
                                 </footer>
                                 <div class="comment-content">
-                <?php comment_text(); ?>
+                                    <?php comment_text(); ?>
                                 </div>
 
                                 <!-- .reply -->
@@ -503,7 +729,7 @@ if (!function_exists('get_slide')):
             if (!function_exists('new_length')):
 
                 function new_length($length) {
-                    return 105;
+                    return 20;
                 }
 
                 add_filter('excerpt_length', 'new_length');
@@ -523,7 +749,7 @@ if (!function_exists('get_slide')):
                     return ' &hellip;' . new_continue_reading_link();
                 }
 
-                add_filter('excerpt_more', 'new_auto_excerpt_more');
+                //add_filter('excerpt_more', 'new_auto_excerpt_more');
                 add_action('show_user_profile', 'extra_user_profile_fields');
                 add_action('edit_user_profile', 'extra_user_profile_fields');
             endif;
@@ -541,122 +767,122 @@ if (!function_exists('get_slide')):
                     <table class="form-table">
                         <tr>
                             <th><label for="twitline">
-        <?php _e("Twitline Post ID"); ?>
+                                    <?php _e("Twitline Post ID"); ?>
                                 </label></th>
                             <td><input type="text" name="twitline" id="twitline" value="<?php echo esc_attr(get_the_author_meta('dk_twitline', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your Twitline Post ID"); ?>
+                                    <?php _e("Your Twitline Post ID"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="zingme">
-        <?php _e("Zing Me"); ?>
+                                    <?php _e("Zing Me"); ?>
                                 </label></th>
                             <td><input type="text" name="zingme" id="zingme" value="<?php echo esc_attr(get_the_author_meta('dk_zingme', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your Zing Me link"); ?>
+                                    <?php _e("Your Zing Me link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="facebook">
-        <?php _e("Facebook"); ?>
+                                    <?php _e("Facebook"); ?>
                                 </label></th>
                             <td><input type="text" name="facebook" id="facebook" value="<?php echo esc_attr(get_the_author_meta('dk_facebook', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your facebook link"); ?>
+                                    <?php _e("Your facebook link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="twitter">
-        <?php _e("Twitter"); ?>
+                                    <?php _e("Twitter"); ?>
                                 </label></th>
                             <td><input type="text" name="twitter" id="twitter" value="<?php echo esc_attr(get_the_author_meta('dk_twitter', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your twitter link"); ?>
+                                    <?php _e("Your twitter link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="linkedin">
-        <?php _e("LinkedIn"); ?>
+                                    <?php _e("LinkedIn"); ?>
                                 </label></th>
                             <td><input type="text" name="linkedin" id="linkedin" value="<?php echo esc_attr(get_the_author_meta('dk_linkedin', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your linkedin link"); ?>
+                                    <?php _e("Your linkedin link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="pinterest">
-        <?php _e("Pinterest"); ?>
+                                    <?php _e("Pinterest"); ?>
                                 </label></th>
                             <td><input type="text" name="pinterest" id="pinterest" value="<?php echo esc_attr(get_the_author_meta('dk_pinterest', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your Pinterest link"); ?>
+                                    <?php _e("Your Pinterest link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="tumblr">
-        <?php _e("Tumblr"); ?>
+                                    <?php _e("Tumblr"); ?>
                                 </label></th>
                             <td><input type="text" name="tumblr" id="tumblr" value="<?php echo esc_attr(get_the_author_meta('dk_tumblr', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your tumblr link"); ?>
+                                    <?php _e("Your tumblr link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="flickr">
-        <?php _e("Flickr"); ?>
+                                    <?php _e("Flickr"); ?>
                                 </label></th>
                             <td><input type="text" name="flickr" id="flickr" value="<?php echo esc_attr(get_the_author_meta('dk_flickr', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your flickr link"); ?>
+                                    <?php _e("Your flickr link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="gplus">
-        <?php _e("Google+"); ?>
+                                    <?php _e("Google+"); ?>
                                 </label></th>
                             <td><input type="text" name="gplus" id="gplus" value="<?php echo esc_attr(get_the_author_meta('dk_gplus', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your google+ link"); ?>
+                                    <?php _e("Your google+ link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="youtube">
-        <?php _e("Youtube"); ?>
+                                    <?php _e("Youtube"); ?>
                                 </label></th>
                             <td><input type="text" name="youtube" id="youtube" value="<?php echo esc_attr(get_the_author_meta('dk_youtube', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your youtube link"); ?>
+                                    <?php _e("Your youtube link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="rss">
-        <?php _e("RSS"); ?>
+                                    <?php _e("RSS"); ?>
                                 </label></th>
                             <td><input type="text" name="rss" id="rss" value="<?php echo esc_attr(get_the_author_meta('dk_rss', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your rss link"); ?>
+                                    <?php _e("Your rss link"); ?>
                                 </span></td>
                         </tr>
                         <tr>
                             <th><label for="skype">
-        <?php _e("Skype"); ?>
+                                    <?php _e("Skype"); ?>
                                 </label></th>
                             <td><input type="text" name="skype" id="skype" value="<?php echo esc_attr(get_the_author_meta('dk_skype', $user->ID)); ?>" class="regular-text" />
                                 <br />
                                 <span class="description">
-        <?php _e("Your skype id"); ?>
+                                    <?php _e("Your skype id"); ?>
                                 </span></td>
                         </tr>
                     </table>
@@ -738,7 +964,7 @@ if (!function_exists('get_slide')):
                     <li> <a class="hide_notify" rel="bookmark" href="<?php echo get_comment_link($comment->comment_ID); ?>">
                             <div class="index_comment_notify">
                                 <div class="ic_avatar">
-            <?php echo get_avatar($comment->comment_author_email, '40'); ?>
+                                    <?php echo get_avatar($comment->comment_author_email, '40'); ?>
                                 </div>
                                 <div class="ic_text">
                                     <div class="ic_meta ic_author">
@@ -748,15 +974,15 @@ if (!function_exists('get_slide')):
                                         <?php echo comment_excerpt($comment->comment_ID); ?>
                                     </div>
                                     <div class="ic_meta ic_date">
-            <?php echo $comment->comment_date; ?>
+                                        <?php echo $comment->comment_date; ?>
                                     </div>
                                 </div>
                             </div>
                     </li>
                 </a>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         <li class="notify_title">
-            <h2>Bình luận mới</h2>
+            <h2>New Comments</h2>
         </li>
         </ul>
         <?php
@@ -798,7 +1024,7 @@ if (!function_exists('dk_recent_posts')):
                                 <?php echo get_excerpt_by_id($recent->ID, 19); ?>
                             </div>
                             <div class="ic_meta ic_date">
-            <?php echo get_the_time('d.m.Y H:i:s', $recent->ID); ?>
+                                <?php echo get_the_time('d.m.Y H:i:s', $recent->ID); ?>
                             </div>
                         </div>
                     </div>
@@ -806,7 +1032,7 @@ if (!function_exists('dk_recent_posts')):
             </li>
         <?php endforeach; ?>
         <li class="notify_title">
-            <h2>Bài viết mới</h2>
+            <h2>New Posts</h2>
         </li>
         </ul>
         <?php
@@ -845,7 +1071,7 @@ if (!function_exists('dk_related_posts')):
                                 <?php echo $related->post_title; ?>
                             </h2>
                             <p class="related_except">
-                <?php echo get_excerpt_by_id($related->ID, 29); ?>&hellip;
+                                <?php echo get_excerpt_by_id($related->ID, 29); ?>&hellip;
                             </p>
                         </div>
                         <div class="clearfix"></div>
@@ -870,7 +1096,7 @@ if (!function_exists('echo_dk_social_links')):
                 <?php echo get_avatar(1, 60); ?>
             </li>
             <li>
-        <?php dk_social_links(); ?>
+                <?php dk_social_links(); ?>
             </li>
             <li class="notify_title">
                 <h2>I'm on Internet</h2>
@@ -897,34 +1123,6 @@ if (!function_exists('get_excerpt_by_id')):
     }
 
 endif;
-if (!function_exists('dk_random_post_no_cache_plugin')):
-
-    function dk_random_post_no_cache_plugin() {
-        $args = array(
-            'numberposts' => '1',
-            'orderby' => 'rand'
-        );
-        $random_posts = get_posts($args);
-        ?>
-        <a rel="bookmark" href="<?php echo get_permalink($random_posts[0]->ID); ?>">
-            <h3>Xem ngẫu nhiên</h3>
-            <img src="<?php echo theme_dir; ?>/img/process.png" style="position: absolute;margin: -36px 0 0 6px;"> </a>
-        <?php
-    }
-
-endif;
-
-if (!function_exists('dk_random_post_cache_plugin')):
-
-    function dk_random_post_cache_plugin() {
-        ?>
-        <a href="<?php echo home_url(); ?>/random" rel="bookmark" target="_top">
-            <h3>Xem ngẫu nhiên</h3>
-            <img src="<?php echo theme_dir; ?>/img/process.png" style="position: absolute;margin: -36px 0 0 6px;"> </a>
-        <?php
-    }
-
-endif;
 
 if (!function_exists('contact_form')):
 
@@ -934,20 +1132,11 @@ if (!function_exists('contact_form')):
         ?>
         <ul class="notify" id="contact_area">
             <li id="contactarea">
-                <!--<form name="contactform" id="contactform" action="http://localhost/wp-comments-post.php" method="post">
-                        <textarea tabindex="1" name="msg" placeholder="Góp ý/C?m nh?n c?a b?n"></textarea>
-                        <!--<input tabindex="4" type="button" value="G?i mail" name="send" onClick="sendemail();" id="submitbutton">
-                        <input tabindex="4" type="button" value="G?i mail" name="send" id="submitbutton">
-                        <input tabindex="2" type="text" name="name" placeholder="Tên c?a b?n *">
-                        <input tabindex="3" type="text" name="email" placeholder="Email c?a b?n *">
-                        <input type="hidden" name="comment_post_ID" value="1691" id="comment_post_ID">
-                        </form>-->
-
                 <form action="/wp-comments-post.php" method="post" id="contactform">
-                    <textarea id="comment" name="comment" aria-required="true" placeholder="Cảm nhận của bạn" tabindex="1"></textarea>
-                    <input name="submit" type="submit" id="submit" value="G?i mail" tabindex="4">
-                    <input id="author" name="author" type="text" value="" size="30" aria-required="true" placeholder="Tên của bạn *" tabindex="2">
-                    <input id="email" name="email" type="text" value="" size="30" aria-required="true" placeholder="Email của bạn * name@example.com" tabindex="3">
+                    <textarea id="comment" name="comment" aria-required="true" placeholder="Your message" tabindex="1"></textarea>
+                    <input name="submit" type="submit" id="submit" value="Send" tabindex="4">
+                    <input id="author" name="author" type="text" value="" size="30" aria-required="true" placeholder="Name*" tabindex="2">
+                    <input id="email" name="email" type="text" value="" size="30" aria-required="true" placeholder="Email * name@example.com" tabindex="3">
                     <input type="hidden" name="comment_post_ID" value="<?php
         echo ($user->dk_twitline != '') ? intval($user->dk_twitline) : 1;
         ?>" id="comment_post_ID">
@@ -956,7 +1145,7 @@ if (!function_exists('contact_form')):
                 </form>
             </li>
             <li class="notify_title">
-                <h2>Góp ý/Cảm nhận</h2>
+                <h2>Contact</h2>
             </li>
         </ul>
         <?php

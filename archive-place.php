@@ -1,6 +1,6 @@
 <?php
 /*
- * Archive for Events
+ * Archive for Places
  */
 get_header();
 ?>
@@ -8,11 +8,10 @@ get_header();
 <section id="primary">
     <div id="content" role="main">
         <!-- slide --><article  class="hentry">
-            <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 3)); ?>
+            <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 3)); ?>
             <?php if (have_posts()) : $count = 1; ?>
                 <div id="slidorion">
                     <div id="slider">
-
                         <?php while (have_posts()) : the_post(); ?>
                             <div id="slide<?php echo $count++; ?>" class="slide">
                                 <div class="content">
@@ -21,7 +20,7 @@ get_header();
                                     if (has_post_thumbnail($post->ID))
                                         echo get_the_post_thumbnail($post->ID, 'large', array('class' => 'aligncenter slide_thumb', 'title' => trim(strip_tags($post->post_title))));
                                     else {
-                                        echo '<img class="alignleft event_thumb" src="'.theme_dir . '/img/default_event.jpg" />';
+                                        echo '<img class="alignleft event_thumb" src="'.theme_dir . '/img/default_place.jpg" />';
                                     }
                                     ?>
 
@@ -55,7 +54,7 @@ get_header();
                     wp_reset_query();
                     ?>
                 </div>
-                <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 3)); ?>
+                <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 3)); ?>
                 <?php if (have_posts()) : ?>
 
                     <div id="accordion">
@@ -73,19 +72,19 @@ get_header();
             </div>
         </article>
         <!-- end slide -->
-        <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 6)); ?>
+        <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 6)); ?>
         <?php if (have_posts()) : ?>
             <?php /* Start the Loop */ ?>
             <?php while (have_posts()) : the_post(); ?>
                 <article  class="event hentry">
-                    <div class="temp-event-thumb"><a href="<?php the_permalink(); ?>" rel="bookmark">
+                    <div class="temp-event-thumb">
                     <?php
                     if (has_post_thumbnail($post->ID))
-                        echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignleft event_thumb', 'title' => trim(strip_tags($post->post_title))));
+                        echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignleft place_thumb', 'title' => trim(strip_tags($post->post_title))));
                     else {
-                        echo '<img class="alignleft event_thumb" src="'.theme_dir . '/img/default_event.jpg" />';
+                        echo '<img class="alignleft place_thumb" src="'.theme_dir . '/img/default_place.jpg" />';
                     }
-                    ?></a></div>
+                    ?></div>
                     <div class="temp-event-infos">
                         <div class="temp-event-info temp-event-left">
                             <h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
