@@ -296,7 +296,7 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
-        'rewrite' => array('slug' => 'places'),
+        'rewrite' => array('slug' => 'place'),
         'supports' => array('title',
             'author',
             'excerpt',
@@ -326,7 +326,7 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
-        'rewrite' => array('slug' => 'events'),
+        'rewrite' => array('slug' => 'event'),
         'supports' => array('title',
             'author',
             'excerpt',
@@ -432,7 +432,7 @@ if (!function_exists('glb_scripts_method')):
     function glb_scripts_method() {
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', theme_dir . '/js/jquery.min.js');
-        wp_enqueue_script('masonry', theme_dir . '/js/masonry.js', NULL, NULL, true);
+       // wp_enqueue_script('masonry', theme_dir . '/js/masonry.js', NULL, NULL, true);
         wp_enqueue_script('jplayermain', theme_dir . '/js/jquery.jplayer.min.js', NULL, NULL, true);
         wp_enqueue_script('jquery_every', theme_dir . '/js/jquery.every.js', NULL, NULL, true);
         wp_enqueue_script('jquery_easing', theme_dir . '/js/jquery.easing.1.3.js', NULL, NULL, true);
@@ -449,7 +449,7 @@ if (!function_exists('glb_scripts_method')):
             wp_enqueue_script('jplayerconf', theme_dir . '/js/jplayer.config.js', NULL, NULL, true);
         }
         if (is_home()) {
-            wp_enqueue_script('masonryconf', theme_dir . '/js/masonry-conf.js', NULL, NULL, true);
+           // wp_enqueue_script('masonryconf', theme_dir . '/js/masonry-conf.js', NULL, NULL, true);
         }
         if (is_archive()) {
             wp_enqueue_script('slide', theme_dir . '/js/jquery.slidorion.min.js', NULL, NULL, true);
@@ -484,6 +484,17 @@ if (!function_exists('favicon_link')):
 
     add_action('wp_head', 'favicon_link');
 endif;
+function hwl_home_pagesize( $query ) {
+    if ( is_admin() || ! $query->is_main_query() )
+        return;
+
+    if ( is_home() ) {
+        // Display only 1 post for the original blog archive
+        $query->set( 'post_type', array( 'post', 'event', 'place' ) );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
 
 if (!function_exists('get_slide')):
 
@@ -656,7 +667,7 @@ if (!function_exists('get_slide')):
                     if ($wp_query->max_num_pages > 1) :
                         ?>
                         <nav id="<?php echo $nav_id; ?>">
-                            <?php next_posts_link(__('Xem thêm&hellip;')); ?>
+                            <?php next_posts_link(__('More&hellip;')); ?>
                         </nav>
                         <!-- #nav-above -->
                         <?php

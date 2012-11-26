@@ -94,7 +94,7 @@
                     <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
                     <li class="notifications notify_icon"><h3 id="logo">Places</h3>
                         <ul class="notify" id="place_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/places">All</a>
+                            <li><a href="<?php echo get_home_url(); ?>/place">All</a>
                             <?php $places = get_categories('taxonomy=places');
                                 foreach ($places as $place) : ?>
                             <li><a href="<?php echo get_term_link($place->slug, 'places') ?>"><?php echo $place->name ?></a></li>
@@ -103,7 +103,7 @@
                     </li>
                     <li class="notifications notify_icon"> <h3 id="logo">Events</h3>
                         <ul class="notify" id="event_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/events">All</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/event">All</a></li>
                             <?php $events = get_categories('taxonomy=events');
                                 foreach ($events as $event) : ?>
                             <li><a href="<?php echo get_term_link($event->slug, 'events') ?>"><?php echo $event->name ?></a></li>

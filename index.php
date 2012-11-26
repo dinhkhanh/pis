@@ -2,7 +2,6 @@
 get_header(); ?>
 <div id="primary">
   <div id="content" role="main">
-    <?php query_posts( array( 'post_type' => array( 'post', 'event', 'place' ), 'orderby' => 'rand' ) ); ?>
     <?php if ( have_posts() ) : ?>
     <?php /* Start the Loop */ ?>
     <?php while ( have_posts() ) : the_post(); ?>

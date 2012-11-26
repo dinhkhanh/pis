@@ -659,15 +659,19 @@ input#s {
     width: 219px;
 }
 .widget {
-    margin: 0 0;
+    margin: 0 0 0 0;
     padding: 0 0 10px 10px;
-    border-top: 1px solid #fff;
 }
 .widget-title {
     font-family: 'Segoe UI Light';
     font-weight: 100;
     font-size: 22px;
-    text-transform: lowercase
+    color: #fff;
+    background-color: #03B5FC;
+    margin-bottom:  5px;
+    margin-left: -10px;
+    padding-left: 10px;
+    line-height: 1.625em;
 }
 .page-title {
     margin: 0;
@@ -685,7 +689,14 @@ input#s {
     font-weight: normal
 }
 .widget ul li {
-    list-style: square
+    list-style: none
+}
+.widget_smSticky ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+.widget_smSticky ul li img {
+    border-radius: 3px;
 }
 .single #content, .single #content, #content {
     margin: 0 auto 41px;
@@ -1590,6 +1601,9 @@ p#dolly {
     text-decoration: none;
 }
 nav#nav-below {
+    float: left;
+    width: 100%;
+    margin-bottom: 1px;
     text-align: center;
     background-color: #eee;
     background-image: url(img/noise.png), -webkit-linear-gradient(top, #fff, #fdfdfd);
@@ -2282,13 +2296,9 @@ img.post_thumb {
 .widget_calendar #wp-calendar th {
     background: #f4f4f4;
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
     font-weight: bold;
 }
 .widget_calendar #wp-calendar tfoot td {
-    background: #f4f4f4;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
 }
 /************* LOGIN PAGE ***********/
 #login-page {
@@ -2449,6 +2459,10 @@ img.post_thumb {
     width: 125px;
     height: 125px;
 }
+.single-place .place .place_thumb {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
 .place th {
     width: 150px;
 }
@@ -2494,4 +2508,10 @@ img.post_thumb {
 }
 .place-verified.verified {
     background-position: 0 -24px;
+}
+.place_sidebar_thumb {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 5px;
 }
