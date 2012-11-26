@@ -34,6 +34,10 @@
                 <th>Website: &nbsp; </th>
                 <td><?php echo get_post_meta($post->ID, 'website', true); ?></td>
             </tr>
+            <tr>
+                <th>Author: &nbsp; </th>
+                <td><?php echo get_the_author(); ?></td>
+            </tr>
         </table>
     </div>
 </div>
@@ -81,7 +85,7 @@ if ($categories) {
                 <td><?php echo get_post_meta($post->ID, 'cons', true); ?></td>
             </tr>
             <tr>
-                <th>Main Menu: </th>
+                <th>Main Products: </th>
                 <td><?php echo get_post_meta($post->ID, 'mainmenu', true); ?></td>
             </tr>
             <tr>

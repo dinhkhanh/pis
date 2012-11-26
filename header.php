@@ -92,22 +92,37 @@
             <div class="nav-wrapper">
                 <ul class="notify_bar alignleft">
                     <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
-                    <li class="notifications notify_icon"> <a href="<?php echo get_home_url(); ?>/places"><h3 id="logo">Places</h3></a> </li>
-                    <li class="notifications notify_icon"> <a href="<?php echo get_home_url(); ?>/event"><h3 id="logo">Events</h3></a> </li>
+                    <li class="notifications notify_icon"><h3 id="logo">Places</h3>
+                        <ul class="notify" id="place_bar">
+                            <li><a href="<?php echo get_home_url(); ?>/places">All</a>
+                            <?php $places = get_categories('taxonomy=place');
+                                foreach ($places as $place) : ?>
+                            <li><a href="<?php echo get_term_link($place->slug, 'place') ?>"><?php echo $place->name ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                    <li class="notifications notify_icon"> <h3 id="logo">Events</h3>
+                        <ul class="notify" id="event_bar">
+                            <li><a href="<?php echo get_home_url(); ?>/event">All</a></li>
+                            <?php $events = get_categories('taxonomy=event');
+                                foreach ($events as $event) : ?>
+                            <li><a href="<?php echo get_term_link($event->slug, 'event') ?>"><?php echo $event->name ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="user_bar alignright">
                     <?php
                     if (is_user_logged_in()) {
-                        global $current_user;
-                        get_currentuserinfo();
+                        $current_user = wp_get_current_user();
                         ?>
-                        <li class="notifications notify_icon"><h3><?php echo get_avatar($current_user->user_email, '32'); ?><?php echo $current_user->user_login; ?></h3>
+                        <li class="notifications notify_icon"><h3><?php echo get_avatar($current_user->user_email, '32'); ?><?php echo $current_user->display_name ; ?></h3>
                             <ul class="notify" id="user_profile_bar">
                                 <li>
                                     <a href="<?php echo get_home_url() . '/wp-admin/'; ?>">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Your profile</a>
+                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Profile</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo get_home_url(); ?>/wp-admin/profile.php">Update info</a>

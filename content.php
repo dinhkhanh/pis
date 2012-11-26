@@ -23,13 +23,25 @@
       <h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark">
         <?php the_title(); ?>
         </a></h2>
-      <span class="bagde bagde-hot">Post</span>
+        <?php if(current_user_can('edit_posts')) { ?>
+            <a href="<?php echo get_edit_post_link($post->ID); ?>" title="Edit">
+                <span class="bagde bagde-hot">Edit</span>
+            </a>
+        <?php } else { ?>
+                <span class="bagde bagde-hot">Edit</span>
+        <?php } ?>
     </hgroup>
     <?php else : ?>
     <h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark">
             <?php the_title(); ?>
       </a></h1>
-      <span class="bagde bagde-<?php echo get_post_type(); ?>">Post</span>
+      <?php if(current_user_can('edit_posts')) { ?>
+            <a href="<?php echo get_edit_post_link($post->ID); ?>" title="Edit">
+                <span class="bagde bagde-<?php echo get_post_type(); ?>">Edit</span>
+            </a>
+      <?php } else { ?>
+                <span class="bagde bagde-<?php echo get_post_type(); ?>">Edit</span>
+        <?php } ?>
     <?php endif; ?>
   </header>
   <!-- .entry-header -->
@@ -50,16 +62,19 @@
             the_excerpt();
       }?>
       <?php if ( 'event' == get_post_type() ) : ?>
-      <p stylte="display: block; float: left;">Location:
-      <?php echo get_post_meta($post->ID, 'location', true); ?>
-      <br/>
-      Start Date:
-        <?php echo get_post_meta($post->ID, 'start_date', true); ?>
-      <br />
-      End Date:
-      <?php echo get_post_meta($post->ID, 'end_date', true); ?>
-      </p>
+        <p stylte="display: block; float: left;">Location:
+        <?php echo get_post_meta($post->ID, 'location', true); ?>
+        <br />
+        End Date:
+        <?php echo get_post_meta($post->ID, 'end_date', true); ?>
+        </p>
       <?php endif; ?>
+      <?php if ('place' == get_post_type()) { ?>
+          <p style="display: block; float: left;">Address:
+            <?php echo get_post_meta($post->ID, 'location', true); ?><br />
+            Main products:
+              <?php echo get_post_meta($post->ID, 'mainmenu', true); ?></p>
+           <?php } ?>
     <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>
   </div>
   <!-- .entry-content -->

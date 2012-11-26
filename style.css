@@ -1572,8 +1572,9 @@ p#dolly {
     position: absolute;
     top: -22px;
     left: 50%;
-    width: 1px;
-    height: 1px;
+    margin-left: -10px;
+    width: 0px;
+    height: 0px;
     border: 1px solid transparent;
     border-width: 10px;
     border-bottom-color: #03B5FC;
@@ -1743,7 +1744,10 @@ nav#nav-below:active {
     margin-bottom: .5em
 }
 /************ USER BAR *********/
-.user_bar {
+#place_bar, #event_bar {
+    margin-left: -18px;
+}
+.user_bar, .notify_bar {
     margin: 0 !important;
     list-style: none;
 }
@@ -1760,7 +1764,7 @@ nav#nav-below:active {
     min-width: none;
     padding: 0 8px;
 }
-.user_bar ul li {
+.user_bar ul li, .notify_bar ul li {
     min-width: 130px;
     text-align: left;
     white-space: nowrap;
@@ -1769,13 +1773,13 @@ nav#nav-below:active {
     font-weight: bold;
     border-bottom:  1px solid #eee;
 }
-.user_bar ul li:last-child {
+.user_bar ul li:last-child, .notify_bar ul li:last-child {
     border-bottom-width: 0
 }
-.user_bar ul li:hover {
+.user_bar ul li:hover, .notify_bar ul li:hover {
     background-color: #f5f5f5;
 }
-.user_bar ul li:active {
+.user_bar ul li:active, .notify_bar ul li:active {
     background-color: #eee;
 }
 p#vtip {

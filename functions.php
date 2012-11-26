@@ -118,7 +118,7 @@ function show_place_meta_box() {
             </td>
         </tr>
         <tr>
-            <th><label for="mainmenu">Main Menu</label></th>
+            <th><label for="mainmenu">Main Products</label></th>
             <td>
                 <input type="text" name="mainmenu" id="mainmenu" value="<?php echo $menu; ?>" />
                     <br /><span class="description">What are main menu of this place?</span>
@@ -307,7 +307,7 @@ function create_post_type() {
             'custom-fields',
             'revisions'),
         'show_in_nav_menus' => true,
-        'taxonomies' => array('place')
+        'taxonomies' => array('category', 'post_tag')
             )
     );
     register_post_type('event', array(
@@ -337,13 +337,20 @@ function create_post_type() {
             'custom-fields',
             'revisions'),
         'show_in_nav_menus' => true,
-        'taxonomies' => array('event')
+        'taxonomies' => array('category', 'post_tag')
             )
     );
 }
 
 add_action('init', 'create_taxonomies', 0);
+add_action('init', 'taxonomy');
 
+function taxonomy() {
+    register_taxonomy_for_object_type('category', 'place');
+    register_taxonomy_for_object_type('post_tag', 'place');
+    register_taxonomy_for_object_type('category', 'event');
+    register_taxonomy_for_object_type('post_tag', 'event');
+}
 //create two taxonomies, genres and writers for the post type "book"
 function create_taxonomies() {
     // Add new taxonomy, make it hierarchical (like categories)
