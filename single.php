@@ -19,5 +19,4 @@ get_header();
         <?php wp_nav_menu(array('theme_location' => 'primary')); ?>
     </div>
 </div><!-- #primary -->
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

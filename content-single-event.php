@@ -52,6 +52,10 @@ $postID = $post->ID*-1;
             ?>
         </ul>
     </div>
+    <div class="widget">
+        <h3 class="widget-title">Direction</h3>
+        <div id="map_directions" style="width: 200px; height: 400px;"></div>
+    </div>
 </div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
@@ -69,6 +73,7 @@ $postID = $post->ID*-1;
             <div class="event-info event-address">
                 <h1><?php echo get_post_meta($post->ID, 'host', true); ?></h1>
                 <h3><?php echo get_post_meta($post->ID, 'location', true); ?></h3>
+                <input type="hidden" id="input_address" value="<?php echo get_post_meta($post->ID, 'location', true) ;?>" />
             </div> <!-- end event address -->
             <div class="event-info event-time">
                 <div class="event-start">
@@ -92,8 +97,7 @@ $postID = $post->ID*-1;
     <div class="entry-content">
         <h1 class="event-info-title">EVENT DETAIL</h1>
         <?php the_content(); ?>
-        <?php wp_link_pages(array('before' => '<div class="page-link"><span>' . __('Pages:') . '</span>', 'after' => '</div>')); ?>
-
+        <div id="map_canvas" style="width: 100%; height: 300px;"></div>
     </div>
     <!-- .entry-content -->
 

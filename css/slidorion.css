@@ -84,6 +84,7 @@
     line-height:20px;
     margin: 0;
     padding: 16px;
+    padding-bottom: 0;
     border: none;
     overflow:auto;
 }

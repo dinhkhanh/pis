@@ -894,7 +894,7 @@ img.post_thumb:hover {
     overflow: hidden;
     position: relative;
 }
-.home .hentry, .page-template-news-php .hentry{
+.home .hentry, .page-template-news-php .hentry, .search-results .hentry{
     width: 349px;
     float: left;
     margin-right: 1px;
@@ -930,8 +930,6 @@ img.post_thumb:hover {
     color: #4D90F0;
 }
 .hentry:hover img.post_thumb {
-    filter: none;
-    -webkit-filter: grayscale(0);
 }
 #nav-single {
     text-align: center;
@@ -2367,7 +2365,7 @@ img.post_thumb {
 }
 .event-header img.event_thumb {
     width: 780px;
-    height: 200px;
+    height: 400px;
     margin-bottom: 0 !important;
 }
 .event-infos {
@@ -2469,11 +2467,11 @@ img.post_thumb {
 .place th {
     width: 150px;
 }
-.single-place #sidebar, .single-event #sidebar {
+.single-place #sidebar, .single-event #sidebar, .single-post #sidebar, search-results {
     position: absolute;
     margin-left: -220px;
 }
-.single-place #sidebar .widget:first-child, .single-event #sidebar .widget:first-child {
+.single-place #sidebar .widget:first-child, .single-event #sidebar .widget:first-child, .single-post #sidebar .widget:first-child  {
     padding: 0 0 0 0;
     border-top-width: 0;
 }
@@ -2524,6 +2522,12 @@ img.post_thumb {
 .temp-place-infos {
     float: left;
     width: 290px;
+}
+#map_directions {
+    overflow-y: scroll;
+    line-height: 12px;
+    font-size: 11px;
+    font-family: Tahoma;
 }
 
 /********************** PROFILE **************/

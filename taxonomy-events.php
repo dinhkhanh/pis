@@ -8,7 +8,7 @@ get_header();
 <section id="primary">
     <div id="content" role="main">
         <!-- slide --><article  class="hentry">
-            <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 3)); ?>
+            <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
             <?php if (have_posts()) : $count = 1; ?>
                 <div id="slidorion">
                     <div id="slider">
@@ -55,7 +55,7 @@ get_header();
                     wp_reset_query();
                     ?>
                 </div>
-                <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 3)); ?>
+                <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
                 <?php if (have_posts()) : ?>
 
                     <div id="accordion">

@@ -69,6 +69,11 @@ wp_reset_query();
     ?>
         </ul>
     </div>
+
+    <div class="widget">
+        <h3 class="widget-title">Direction</h3>
+        <div id="map_directions" style="width: 200px; height: 400px;"></div>
+    </div>
 </div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
@@ -86,6 +91,7 @@ wp_reset_query();
             <hr />
             <p class="place_address">
 <?php echo get_post_meta($post->ID, 'location', true); ?>
+                <input type="hidden" id="input_address" value="<?php echo get_post_meta($post->ID, 'location', true) ;?>" />
             </p>
         </div>
     </header>
@@ -122,6 +128,7 @@ if ($categories) {
                 <td><?php the_content(); ?></td>
             </tr>
         </table>
+        <div id="map_canvas" style="width: 100%; height: 300px;"></div>
     </div>
     <!-- .entry-content -->
 </article>

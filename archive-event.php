@@ -59,7 +59,7 @@ get_header();
                     ?>
                         <div id="accordion">
 
-                    <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 3)); ?>
+                    <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
                     <?php if (have_posts()) : ?>
                             <?php while (have_posts()) : the_post(); ?>
                                 <div class="link-header"><?php the_title(); ?></div>
