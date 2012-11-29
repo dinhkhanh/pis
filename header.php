@@ -92,7 +92,7 @@
             <div class="nav-wrapper">
                 <ul class="notify_bar alignleft">
                     <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
-                    <li class="notifications notify_icon"><h3 id="logo">Places</h3>
+                    <li class="notifications notify_icon"><h3>Places</h3>
                         <ul class="notify" id="place_bar">
                             <li><a href="<?php echo get_home_url(); ?>/place">All</a>
                             <?php $places = get_categories('taxonomy=places');
@@ -101,7 +101,7 @@
                             <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li class="notifications notify_icon"> <h3 id="logo">Events</h3>
+                    <li class="notifications notify_icon"> <h3>Events</h3>
                         <ul class="notify" id="event_bar">
                             <li><a href="<?php echo get_home_url(); ?>/event">All</a></li>
                             <?php $events = get_categories('taxonomy=events');
@@ -109,6 +109,8 @@
                             <li><a href="<?php echo get_term_link($event->slug, 'events') ?>"><?php echo $event->name ?></a></li>
                             <?php endforeach; ?>
                         </ul>
+                    </li>
+                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/news">News</a></h3>
                     </li>
                 </ul>
                 <ul class="user_bar alignright">

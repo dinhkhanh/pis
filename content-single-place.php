@@ -4,17 +4,18 @@
  *
  *
  */
+$postID = $post->ID * -1;
 ?>
+
 <div id="sidebar">
     <div class="widget">
         <div id="place_slider">
-            <?php place_post_thumbnail($post->ID); ?>
+<?php place_post_thumbnail($post->ID, -1, 'medium', 'place_slide'); ?>
         </div>
     </div>
     <div class="widget">
         <h3 class="widget-title">Place's Info</h3>
         <table>
-            <p></p>
             <tr>
                 <th>Verified: </th>
                 <td><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span></td>
@@ -37,35 +38,35 @@
             </tr>
             <tr>
                 <th>Author: &nbsp; </th>
-                <td><?php echo get_the_author(); ?></td>
+                <td><?php echo get_the_author(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
             </tr>
         </table>
     </div>
     <div class="widget widget_smSticky">
         <h3 class="widget-title">Other places</h3>
-        <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 5, 'orderby' => 'rand')); ?>
+<?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 5, 'orderby' => 'rand', 'post__not_in' => array($postID))); ?>
 
-        <?php if (have_posts()) : ?>
-            <ul>
-                <?php while (have_posts()) : the_post(); ?>
-                    <li><a href="<?php the_permalink($post->ID); ?>">
-                            <?php
-                            if (has_post_thumbnail($post->ID)) {
-                                echo get_the_post_thumbnail($post->ID, 'medium', array('class' => 'place_sidebar_thumb', 'title' => trim(strip_tags($post->post_title))));
-                            } else {
-                                echo '<img class="alignleft event_thumb" src="' . theme_dir . '/img/default_place.jpg" />';
-                            }
-                            the_title();
-                            ?>
-                        </a>
-                        <div class="clearfix"></div>
-                    </li>
-                <?php endwhile;
-                ?> </ul>
+<?php if (have_posts()) : ?>
+                <ul>
+    <?php while (have_posts()) : the_post(); ?>
+                            <li><a href="<?php the_permalink($post->ID); ?>">
         <?php
-            endif;
-            wp_reset_query();
-            ?>
+        if (has_post_thumbnail($post->ID)) {
+            echo get_the_post_thumbnail($post->ID, 'medium', array('class' => 'place_sidebar_thumb', 'title' => trim(strip_tags($post->post_title))));
+        } else {
+            echo '<img class="alignleft event_thumb" src="' . theme_dir . '/img/default_place.jpg" />';
+        }
+        the_title();
+        ?>
+                                </a>
+                                <div class="clearfix"></div>
+                            </li>
+    <?php endwhile;
+    ?> </ul>
+    <?php
+endif;
+wp_reset_query();
+    ?>
         </ul>
     </div>
 </div>

@@ -1,10 +1,6 @@
 <?php
 /**
  * The Template for displaying all single posts.
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
  */
 get_header();
 ?>
@@ -19,5 +15,4 @@ get_header();
         <?php wp_nav_menu(array('theme_location' => 'primary')); ?>
     </div>
 </div><!-- #primary -->
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

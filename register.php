@@ -18,7 +18,6 @@ global $wpdb, $user_ID;
                 exit();
             } else {
                 if (!preg_match("/^[a-z0-9]*$/", $username)) {
-                    echo $username;
                     echo "Username should be only letters and numbers. <a href='" . get_option('siteurl') . "/register'>Try again?</a>";
                     exit();
                 }

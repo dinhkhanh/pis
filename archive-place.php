@@ -29,18 +29,25 @@ get_header();
                                         <div class="slide-event-info">
                                             <div class="event-infos">
                                                 <div class="event-info event-address">
-                                                    <h1><?php echo get_post_meta($post->ID, 'host', true); ?></h1>
+                                                    <h1><?php the_title(); ?></h1>
                                                     <h3><?php echo get_post_meta($post->ID, 'location', true); ?></h3>
                                                 </div> <!-- end event address -->
                                                 <div class="event-info event-time">
                                                     <div class="event-start">
-                                                        Start: <br />
-                                                        <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
+                                                        Open <br />
+                                                        <?php echo get_post_meta($post->ID, 'open', true); ?>
                                                     </div>
                                                     <div class="event-end">
-                                                        End: <br />
-                                                        <span>
-                                                            <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
+                                                        Business type<br />
+                                                        <?php
+                                                        $categories = get_the_terms($post->ID, 'places');
+                                                        $separator = ' ';
+                                                        if ($categories) {
+                                                            foreach ($categories as $category) {
+                                                                echo $category->name . $separator;
+                                                            }
+                                                        }
+                                                        ?>
                                                     </div>
                                                     <span class="clearfix"></span>
                                                 </div><!-- end event time -->
@@ -55,12 +62,12 @@ get_header();
                             wp_reset_query();
                             ?>
                         </div>
-                        <?php endif;
+                    <?php endif;
                     ?>
-                        <div id="accordion">
+                    <div id="accordion">
 
-                    <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 3)); ?>
-                    <?php if (have_posts()) : ?>
+                        <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 3)); ?>
+                        <?php if (have_posts()) : ?>
                             <?php while (have_posts()) : the_post(); ?>
                                 <div class="link-header"><?php the_title(); ?></div>
                                 <div class="link-content">
@@ -68,50 +75,35 @@ get_header();
                                 </div>
                                 <?php
                             endwhile;
-                            wp_reset_query(); endif;
-                            ?>
-                        </div>
+                            wp_reset_query();
+                        endif;
+                        ?>
                     </div>
-                </article>
-            <?php        endif;
+                </div>
+            </article>
+        <?php endif;
         ?>
         <!-- end slide -->
-        <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 6)); ?>
         <?php if (have_posts()) : ?>
-            <?php /* Start the Loop */ ?>
     <?php while (have_posts()) : the_post(); ?>
-                <article  class="event hentry">
-                    <div class="temp-event-thumb">
+                <article  class="place hentry">
+                    <div class="temp-place-thumb">
                         <?php
                         if (has_post_thumbnail($post->ID))
-                            echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignleft place_thumb', 'title' => trim(strip_tags($post->post_title))));
+                             place_post_thumbnail($post->ID, 2, 'thumbnail', 'alignleft place_list_thumb');
                         else {
                             echo '<img class="alignleft place_thumb" src="' . theme_dir . '/img/default_place.jpg" />';
                         }
                         ?></div>
-                    <div class="temp-event-infos">
-                        <div class="temp-event-info temp-event-left">
-                            <h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-                            <p><?php
-                        echo get_post_meta($post->ID, 'host', true);
-                        echo ', ' . get_post_meta($post->ID, 'location', true)
-                        ?></p>
+                    <div class="temp-place-infos">
+                        <div class="temp-place-info temp-place-left">
+                            <br /><br />
+                            <h1><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span>&nbsp;<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+                            <span><?php echo get_post_meta($post->ID, 'location', true); ?></span><br />
+                            <span>Created by <?php the_author_posts_link(); ?></span>
+                            <span class="clearfix"></span>
                         </div>
-                        <div class="temp-event-info temp-event-right">
-                            Start: <br />
-                            <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
-                        </div>
-                        <div class="temp-event-info temp-event-left">
-        <?php the_excerpt(); ?>
-                        </div>
-                        <div class="temp-event-info temp-event-right">
-                            End: <br />
-                            <span>
-        <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
-                        </div>
-                        <span class="clearfix"></span>
-                        <span class="clearfix"></span>
-                    </div> <!-- end event info -->
+                    </div> <!-- end place info -->
                 </article>
             <?php endwhile; ?>
             <?php moc_content_nav('nav-below'); ?>
@@ -131,7 +123,6 @@ get_header();
     <?php get_search_form(); ?>
                 </div>
                 <!-- .entry-content -->
-
             </article>
             <!-- #post-0 -->
 

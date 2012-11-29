@@ -34,8 +34,8 @@ j(document).ready(function() {
 		}
 	});
 	j(document).bind("click", function (a) {
-		if (!j(a.target).parent().hasClass("notifications")) {
-			j(".notifications").removeClass("open")
+		if (!j(a.target).parent().hasClass("notifications")&&!j(a.target).parent('h3').parent('li').hasClass("notifications")) {
+			j(".notifications").removeClass("open");
 		}
 	});
 

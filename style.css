@@ -660,7 +660,7 @@ input#s {
 }
 .widget {
     margin: 0 0 0 0;
-    padding: 0 0 10px 10px;
+    padding: 0 0 0 10px;
 }
 .widget-title {
     font-family: 'Segoe UI Light';
@@ -693,7 +693,9 @@ input#s {
 }
 .widget_smSticky ul li {
     list-style: none;
-    margin-bottom: 5px;
+    margin: 0 0 0 0;
+    border-bottom: 1px solid #EEE;
+    padding: 5px 0;
 }
 .widget_smSticky ul li img {
     border-radius: 3px;
@@ -892,7 +894,7 @@ img.post_thumb:hover {
     overflow: hidden;
     position: relative;
 }
-.home .hentry{
+.home .hentry, .page-template-news-php .hentry{
     width: 349px;
     float: left;
     margin-right: 1px;
@@ -1628,10 +1630,11 @@ nav#nav-below:active {
 }
 #infscr-loading {
     line-height: 0;
-    margin-top: -2.25em;
-    left: 50%;
-    margin-left: 30px;
-    position: absolute;
+	margin-top: -2.25em;
+	left: 50%;
+	margin-left: 30px;
+	position: relative;
+	float: left;
 }
 #infscr-loading img {
 }
@@ -2407,7 +2410,7 @@ img.post_thumb {
 .temp-event-thumb {
     width: 200px;
 }
-.temp-event-thumb img {
+.temp-event-thumb img, img.place_list_thumb {
     width: 200px;
     margin-top: 8px;
     border-radius: 3px;
@@ -2433,7 +2436,7 @@ img.post_thumb {
 .temp-event-left p {
     margin-bottom: 0;
 }
-.temp-event-left h1 {
+.temp-event-left h1, .temp-place-left h1{
     font-size: 18px;
     font-weight: bold;
 }
@@ -2466,11 +2469,11 @@ img.post_thumb {
 .place th {
     width: 150px;
 }
-.single-place #sidebar {
+.single-place #sidebar, .single-event #sidebar {
     position: absolute;
     margin-left: -220px;
 }
-.single-place #sidebar .widget:first-child {
+.single-place #sidebar .widget:first-child, .single-event #sidebar .widget:first-child {
     padding: 0 0 0 0;
     border-top-width: 0;
 }
@@ -2514,4 +2517,41 @@ img.post_thumb {
     height: 50px;
     float: left;
     margin-right: 5px;
+}
+.temp-place-thumb {
+    float: left;
+}
+.temp-place-infos {
+    float: left;
+    width: 290px;
+}
+
+/********************** PROFILE **************/
+.user-badge {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(img/user-badge.png);
+    background-repeat: no-repeat;
+}
+.user-badge.Administrator {
+    background-position: 0 -32px;
+}
+.user-badge.Specialist {
+    background-position: 0 -16px;
+}
+.user-badge.Member {
+    background-position: 0 0;
+}
+.hentry #author-info {
+    overflow: hidden;
+    padding: 20px 0;
+}
+.hentry #author-info #author-avatar {
+    float: left;
+    margin-right: 0px;
+}
+.hentry #author-info #author-description {
+    float: left;
+    margin-left: 10px;
 }
