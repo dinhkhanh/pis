@@ -7,8 +7,8 @@ register_nav_menu('secondary', __('Secondary Menu'));
 add_theme_support('post-thumbnails');
 
 function add_custom_meta_box() {
-    add_meta_box('custom_meta_box', 'Place Details', 'show_place_meta_box', 'place', 'normal', 'high');
-    add_meta_box('event_metabox', 'Event Details', 'show_event_meta_box', 'event', 'normal', 'high');
+    add_meta_box('custom_meta_box', 'Chi tiết địa điểm', 'show_place_meta_box', 'place', 'normal', 'high');
+    add_meta_box('event_metabox', 'Chi tiết sự kiện', 'show_event_meta_box', 'event', 'normal', 'high');
 }
 
 add_action('add_meta_boxes', 'add_custom_meta_box');
@@ -25,47 +25,41 @@ function show_event_meta_box() {
     echo '<input type="hidden" name="custom_meta_box_nonce" value="' . wp_create_nonce(basename(__FILE__)) . '" />';
     echo '<table class="form-table">
         <tr>
-            <th><label for="start_date">Start Date</label></th>
+            <th><label for="start_date">Ngày bắt đầu <span class="required">*</span></label></th>
             <td>
                 <input type="date" required="required" name="start_date" id="start_date" value="' . $start_date . '"/>
-                    <br /><span class="description">When will this event start? *required</span>
             </td>
         </tr>';
     echo '
         <tr>
-            <th><label for="start_time">Start Time</label></th>
+            <th><label for="start_time">Giờ bắt đầu <span class="required">*</span></label></th>
             <td>
                 <input type="text" name="start_time" id="start_time" value="' . $start_time . '"/>
-                    <br /><span class="description">What time will this event start?</span>
             </td>
         </tr>';
     echo '<tr>
-            <th><label for="end_date">End Date</label></th>
+            <th><label for="end_date">Ngày kết thúc <span class="required">*</span></label></th>
             <td>
                 <input type="date" required="required" name="end_date" id="end_date" value="' . $end_date . '" />
-                <br /><span class="description">When will this event end? *required</span>
             </td>
         </tr>';
     echo '
         <tr>
-            <th><label for="end_time">End Time</label></th>
+            <th><label for="end_time">Giờ kết thúc <span class="required">*</span></label></th>
             <td>
                 <input type="text" name="end_time" id="end_time" value="' . $end_time . '"/>
-                    <br /><span class="description">What time will this event end?</span>
             </td>
         </tr>';
     echo '<tr>
-            <th><label for="location">Host</label></th>
+            <th><label for="location">Nhà tổ chức <span class="required">*</span></label></th>
             <td>
                 <input type="text" name="host" id="host" required="required" value="' . $host . '" />
-                    <br /><span class="description">Who host this event? *required</span>
             </td>
         </tr>';
     echo '<tr>
-            <th><label for="location">Location</label></th>
+            <th><label for="location">Nơi diễn ra <span class="required">*</span></label></th>
             <td>
                 <input type="text" name="location" id="location" required="required" value="' . $location . '" />
-                    <br /><span class="description">Where will this event happen? *required</span>
             </td>
         </tr>';
     echo '</table>'; // end table
@@ -90,45 +84,39 @@ function show_place_meta_box() {
         <input type="hidden" name="custom_meta_box_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)); ?>" />
         <table class="form-table">
             <tr>
-                <th><label for="location">Address</label></th>
+                <th><label for="location">Địa chỉ <span class="required">*</span></label></th>
                 <td>
                     <input type="text" required="required" name="location" id="location" value="<?php echo $location; ?>"/>
-                    <br /><span class="description">Where is this place? *required</span>
                 </td>
             </tr>
             <tr>
-                <th><label for="pros">Advantage</label></th>
+                <th><label for="pros">Ưu điểm <span class="required">*</span></label></th>
                 <td>
                     <textarea type="text" required="required" name="pros" id="pros" value=""><?php echo $pros; ?></textarea>
-                    <br /><span class="description">What are this place\'s advantages? *required</span>
                 </td>
             </tr>
             <tr>
-                <th><label for="cons">Weakness</label></th>
+                <th><label for="cons">Nhược điểm <span class="required">*</span></label></th>
                 <td>
                     <textarea type="text" required="required" name="cons" id="cons" value="" ><?php echo $cons; ?></textarea>
-                    <br /><span class="description">What are this place\'s disadvantages? *required</span>
                 </td>
             </tr>
             <tr>
-                <th><label for="open">Open Hours</label></th>
+                <th><label for="open">Giờ mở cửa <span class="required">*</span></label></th>
                 <td>
                     <input type="text" name="open" id="open" required="required" value="<?php echo $open; ?>" />
-                    <br /><span class="description">Who host this event? *required</span>
                 </td>
             </tr>
             <tr>
-                <th><label for="mainmenu">Main Products</label></th>
+                <th><label for="mainmenu">Sản phẩm chính</label></th>
                 <td>
                     <input type="text" name="mainmenu" id="mainmenu" value="<?php echo $menu; ?>" />
-                    <br /><span class="description">What are main menu of this place?</span>
                 </td>
             </tr>
             <tr>
-                <th><label for="cost">Cost Range</label></th>
+                <th><label for="cost">Mức giá</label></th>
                 <td>
                     <input type="text" name="cost" id="cost" value="<?php echo $cost; ?>" />
-                    <br /><span class="description">What is cost range of this place?</span>
                 </td>
             </tr>
             <tr>
@@ -139,7 +127,7 @@ function show_place_meta_box() {
                 </td>
             </tr>
             <tr>
-                <th><label for="phone">Phone Number</label></th>
+                <th><label for="phone">Số điện thoại</label></th>
                 <td>
                     <input type="text" name="phone" id="phone" value="<?php echo $phone; ?>" />
                     <br />
@@ -147,7 +135,7 @@ function show_place_meta_box() {
             </tr>
             <tr>
                 <th>
-                    <label for="rating">Rating</label>
+                    <label for="rating">Đánh giá</label>
                 </th>
                 <td>
                     <select name="rating" id="rating">
@@ -161,7 +149,7 @@ function show_place_meta_box() {
             </tr>
             <?php if (current_user_can('edit_others_posts')) { ?>
                 <tr>
-                    <th> <label for="verifed">Verified?</label>  </th>
+                    <th> <label for="verifed">Xác thực?</label>  </th>
                     <td>
                         <input type="checkbox" id="verified" name="verified" <?php checked($check, 'on'); ?> />
                     </td>
@@ -747,25 +735,24 @@ function show_place_meta_box() {
                         function new_length($length) {
                             return 20;
                         }
-
                         add_filter('excerpt_length', 'new_length');
                     endif;
 
                     if (!function_exists('new_continue_reading_link')):
-
                         function new_continue_reading_link() {
-                            return ' <a class="more-links" href="' . esc_url(get_permalink()) . '">' . __(get_the_date() . '<span style="font-size: 134%">&rarr;</span>') . '</a>';
+                            return ' <a class="more-links" href="' . esc_url(get_permalink()) . '"><span style="font-size: 134%">&rarr;</span></a>';
                         }
 
                     endif;
 
                     if (!function_exists('new_auto_excerpt_more')):
-
                         function new_auto_excerpt_more($more) {
+                            if(is_home()){
+                                 return ' &hellip;';
+                            }
                             return ' &hellip;' . new_continue_reading_link();
                         }
-
-                        //add_filter('excerpt_more', 'new_auto_excerpt_more');
+                        add_filter('excerpt_more', 'new_auto_excerpt_more');
                         add_action('show_user_profile', 'extra_user_profile_fields');
                         add_action('edit_user_profile', 'extra_user_profile_fields');
                     endif;
@@ -783,10 +770,10 @@ function show_place_meta_box() {
                             <table class="form-table">
                                 <tr>
                                     <th><label for="gender">
-                                            <?php _e("Gender"); ?>
+        <?php _e("Gender"); ?>
                                         </label></th>
                                     <td>
-                                        <?php $gender = esc_attr(get_the_author_meta('gender', $user->ID)); ?>
+        <?php $gender = esc_attr(get_the_author_meta('gender', $user->ID)); ?>
                                         <select name="gender" id="gender">
                                             <option value="1" <?php selected($gender, '1'); ?>>Male</option>
                                             <option value="2" <?php selected($gender, '2'); ?>>Female</option>
@@ -794,13 +781,13 @@ function show_place_meta_box() {
                                 </tr>
                                 <tr>
                                     <th><label for="age">
-                                            <?php _e("Age"); ?>
+        <?php _e("Age"); ?>
                                         </label></th>
                                     <td><input type="text" name="age" id="age" value="<?php echo esc_attr(get_the_author_meta('age', $user->ID)); ?>" class="regular-text" /></td>
                                 </tr>
                                 <tr>
                                     <th><label for="user_address">
-                                            <?php _e("Address"); ?>
+        <?php _e("Address"); ?>
                                         </label></th>
                                     <td><input type="text" name="user_address" id="user_address" value="<?php echo esc_attr(get_the_author_meta('user_address', $user->ID)); ?>" class="regular-text" /></td>
                                 </tr>
@@ -874,23 +861,23 @@ function show_place_meta_box() {
                             <li> <a class="hide_notify" rel="bookmark" href="<?php echo get_comment_link($comment->comment_ID); ?>">
                                     <div class="index_comment_notify">
                                         <div class="ic_avatar">
-                                            <?php echo get_avatar($comment->comment_author_email, '40'); ?>
+            <?php echo get_avatar($comment->comment_author_email, '40'); ?>
                                         </div>
                                         <div class="ic_text">
                                             <div class="ic_meta ic_author">
-                                                <?php echo get_comment_author($comment->comment_ID); ?>
+            <?php echo get_comment_author($comment->comment_ID); ?>
                                             </div>
                                             <div class="ic_content">
-                                                <?php echo comment_excerpt($comment->comment_ID); ?>
+            <?php echo comment_excerpt($comment->comment_ID); ?>
                                             </div>
                                             <div class="ic_meta ic_date">
-                                                <?php echo $comment->comment_date; ?>
+            <?php echo $comment->comment_date; ?>
                                             </div>
                                         </div>
                                     </div>
                             </li>
                         </a>
-                    <?php endforeach; ?>
+        <?php endforeach; ?>
                 <li class="notify_title">
                     <h2>New Comments</h2>
                 </li>
@@ -928,19 +915,19 @@ function show_place_meta_box() {
                                 </div>
                                 <div class="ic_text">
                                     <div class="ic_meta ic_author">
-                                        <?php echo $recent->post_title; ?>
+            <?php echo $recent->post_title; ?>
                                     </div>
                                     <div class="ic_content">
-                                        <?php echo get_excerpt_by_id($recent->ID, 19); ?>
+            <?php echo get_excerpt_by_id($recent->ID, 19); ?>
                                     </div>
                                     <div class="ic_meta ic_date">
-                                        <?php echo get_the_time('d.m.Y H:i:s', $recent->ID); ?>
+            <?php echo get_the_time('d.m.Y H:i:s', $recent->ID); ?>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </li>
-                <?php endforeach; ?>
+        <?php endforeach; ?>
                 <li class="notify_title">
                     <h2>New Posts</h2>
                 </li>
@@ -978,10 +965,10 @@ function show_place_meta_box() {
                                 </div>
                                 <div class="related_info">
                                     <h2 class="related_title">
-                                        <?php echo $related->post_title; ?>
+                <?php echo $related->post_title; ?>
                                     </h2>
                                     <p class="related_except">
-                                        <?php echo get_excerpt_by_id($related->ID, 29); ?>&hellip;
+                <?php echo get_excerpt_by_id($related->ID, 29); ?>&hellip;
                                     </p>
                                 </div>
                                 <div class="clearfix"></div>
@@ -1003,10 +990,10 @@ function show_place_meta_box() {
                 ?>
                 <ul class="notify" id="dk_social_links">
                     <li>
-                        <?php echo get_avatar(1, 60); ?>
+        <?php echo get_avatar(1, 60); ?>
                     </li>
                     <li>
-                        <?php dk_social_links(); ?>
+        <?php dk_social_links(); ?>
                     </li>
                     <li class="notify_title">
                         <h2>I'm on Internet</h2>
@@ -1048,7 +1035,7 @@ function show_place_meta_box() {
                             <input id="author" name="author" type="text" value="" size="30" aria-required="true" placeholder="Name*" tabindex="2">
                             <input id="email" name="email" type="text" value="" size="30" aria-required="true" placeholder="Email * name@example.com" tabindex="3">
                             <input type="hidden" name="comment_post_ID" value="<?php
-        echo ($user->dk_twitline != '') ? intval($user->dk_twitline) : 1;
+                echo ($user->dk_twitline != '') ? intval($user->dk_twitline) : 1;
                 ?>" id="comment_post_ID">
                             <!--update post ID-->
                             <input type="hidden" name="comment_parent" id="comment_parent" value="0">

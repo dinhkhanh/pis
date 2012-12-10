@@ -39,42 +39,42 @@ endif;
         <meta property="og:type" content="blog" />
         <meta property="og:title" content="PIS - Place Information System" />
         <meta property="og:image" content="<?php
-if (is_singular() && has_post_thumbnail($post->ID)): $url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150, 150));
-    echo $url['0'];
-else: echo theme_dir . '/img/avt.jpg';
-endif;
+              if (is_singular() && has_post_thumbnail($post->ID)): $url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150, 150));
+                  echo $url['0'];
+              else: echo theme_dir . '/img/avt.jpg';
+              endif;
 ?>" />
         <meta itemprop="name" content="<?php wp_title(''); ?>">
         <meta itemprop="description" content="<?php
-        if (is_singular()): echo get_excerpt_by_id($post->ID, 40);
-        else : echo 'Place Information System';
-        endif;
+              if (is_singular()): echo get_excerpt_by_id($post->ID, 40);
+              else : echo 'Place Information System';
+              endif;
 ?>">
         <meta itemprop="image" content="<?php
-        if (is_singular() && has_post_thumbnail($post->ID)): $url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150, 150));
-            echo $url['0'];
-        else: echo theme_dir . '/img/avt.jpg';
-        endif;
+              if (is_singular() && has_post_thumbnail($post->ID)): $url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), array(150, 150));
+                  echo $url['0'];
+              else: echo theme_dir . '/img/avt.jpg';
+              endif;
 ?>">
         <title><?php
-            /*
-             * Print the <title> tag based on what is being viewed.
-             */
-            global $page, $paged;
+              /*
+               * Print the <title> tag based on what is being viewed.
+               */
+              global $page, $paged;
 
-            wp_title('-', true, 'right');
+              wp_title('-', true, 'right');
 
-            // Add the blog name.
-            bloginfo('name');
+              // Add the blog name.
+              bloginfo('name');
 
-            // Add the blog description for the home/front page.
-            $site_description = get_bloginfo('description', 'display');
-            if ($site_description && ( is_home() || is_front_page() ))
-                echo " - $site_description";
+              // Add the blog description for the home/front page.
+              $site_description = get_bloginfo('description', 'display');
+              if ($site_description && ( is_home() || is_front_page() ))
+                  echo " - $site_description";
 
-            // Add a page number if necessary:
-            if ($paged >= 2 || $page >= 2)
-                echo ' - ' . sprintf(__('Page %s', 'pis'), max($paged, $page));
+              // Add a page number if necessary:
+              if ($paged >= 2 || $page >= 2)
+                  echo ' - ' . sprintf(__('Page %s', 'pis'), max($paged, $page));
 ?></title>
         <link href="https://plus.google.com/117861443762606356548" rel="publisher" />
         <link href="https://plus.google.com/117861443762606356548" rel="author" />
@@ -96,58 +96,66 @@ endif;
             <div class="nav-wrapper">
                 <ul class="notify_bar alignleft">
                     <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
-                    <li class="notifications notify_icon"><h3>Places</h3>
+                    <li class="notifications notify_icon"><h3>Địa điểm</h3>
                         <ul class="notify" id="place_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/place">All</a>
-                                <?php
-                                $places = get_categories('taxonomy=places');
-                                foreach ($places as $place) :
-                                    ?>
+                            <li><a href="<?php echo get_home_url(); ?>/place">Tất cả</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/add-place">Thêm mới</a></li>
+                            <?php
+                            $places = get_categories('taxonomy=places');
+                            foreach ($places as $place) :
+                                ?>
                                 <li><a href="<?php echo get_term_link($place->slug, 'places') ?>"><?php echo $place->name ?></a></li>
-<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li class="notifications notify_icon"> <h3>Events</h3>
+                    <li class="notifications notify_icon"> <h3>Sự kiện</h3>
                         <ul class="notify" id="event_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/event">All</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/event">Tất cả</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/add-event">Thêm mới</a></li>
                             <?php
                             $events = get_categories('taxonomy=events');
                             foreach ($events as $event) :
                                 ?>
                                 <li><a href="<?php echo get_term_link($event->slug, 'events') ?>"><?php echo $event->name ?></a></li>
-<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/news">News</a></h3>
+                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/news">Tin tức</a></h3>
                     </li>
-                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/map">Map</a></h3>
+                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/map">Bản đồ</a></h3>
                     </li>
                 </ul>
                 <ul class="user_bar alignright">
-<?php
-if (is_user_logged_in()) {
-    $current_user = wp_get_current_user();
-    ?>
+                    <?php
+                    if (is_user_logged_in()) {
+                        $current_user = wp_get_current_user();
+                        ?>
                         <li class="notifications notify_icon"><h3><?php echo get_avatar($current_user->user_email, '32'); ?><?php echo $current_user->display_name; ?></h3>
                             <ul class="notify" id="user_profile_bar">
+                                <?php
+                                $user_info = get_userdata($current_user->ID);
+                                $user_level = $user_info->user_level;
+                                if ($user_level == 10) {
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo get_home_url() . '/wp-admin/'; ?>">Trang quản trị</a>
+                                    </li>
+                                <?php } ?>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/wp-admin/'; ?>">Dashboard</a>
+                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Trang cá nhân</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Profile</a>
+                                    <a href="<?php echo get_home_url(); ?>/wp-admin/profile.php">Cập nhật thông tin</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url(); ?>/wp-admin/profile.php">Update info</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Logout</a>
+                                    <a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Thoát</a>
                                 </li>
                             </ul>
                         </li>
-                    <?php } else {
-                        ?>
-                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/register'; ?>">Register</a></h3></li>
-                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/login'; ?>">Login</a></h3></li>
+<?php } else {
+    ?>
+                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/register'; ?>">Đăng ký</a></h3></li>
+                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/login'; ?>">Đăng nhập</a></h3></li>
 <?php } ?>
                 </ul>
                 <!--
@@ -157,10 +165,10 @@ if (is_user_logged_in()) {
         </nav>
         <div id="page" class="hfeed">
             <header id="branding" role="banner">
-                    <?php
-                    // Has the text been hidden?
-                    if ('blank' == get_header_textcolor()) :
-                        ?>
+                <?php
+                // Has the text been hidden?
+                if ('blank' == get_header_textcolor()) :
+                    ?>
                     <div class="only-search<?php if (!empty($header_image)) : ?> with-image<?php endif; ?>">
                     <?php get_search_form(); ?>
                     </div>
@@ -178,11 +186,11 @@ if (is_user_logged_in()) {
             <!-- #branding -->
 
             <div id="main">
-                <?php if(is_home() || is_archive()) { ?>
-           <div id="map_canvas" style="width: 100%; height: 300px"></div>
-           <?php } ?>
+                <?php if (is_home() || is_archive()) { ?>
+                    <div id="map_canvas" style="width: 100%; height: 300px; margin-bottom: 1px"></div>
+                <?php } ?>
 
-<?php
+                <?php
 //echo get_slide();
 //echo user_profile();
-?>
+                ?>

@@ -209,7 +209,11 @@ input#s {
     padding: 4px 10px 4px 28px;
 }
 input#searchsubmit {
-    display: none;
+    float: left;
+    display: inline-block;
+    margin: 0 !important;
+    padding: 1px 6px !important;
+    left: 2px !important;
 }
 /* Links */
 
@@ -474,7 +478,9 @@ input[type="text"], input[type="password"], textarea {
     color: #222
 }
 #branding .only-search #s {
-    width: 60px
+    width: 90px;
+    float: left;
+    height: 30px;
 }
 #branding .only-search #s:focus {
     width: 193px;
@@ -734,9 +740,22 @@ input#s {
     line-height: 2.6em;
     text-transform: uppercase;
 }
+.page .entry-content th {
+    letter-spacing: 0;
+    text-transform: none;
+    float: left;
+    font-weight: bold;
+    height: 20px;
+    margin: 0;
+    font-size: 12px;
+    font-family: inherit;
+}
 .entry-content td, .comment-content td {
     border-top: 1px solid #ddd;
     padding: 6px 10px 6px 0;
+}
+.page .entry-content td {
+    border-top: none;
 }
 .entry-content {
     min-height: 152px;
@@ -1241,7 +1260,7 @@ a.comment-reply-link > span {
     -o-border-radius: 0;
     border-radius: 0;
 }
-#login-page input[type="submit"],#respond input#submit, #contactarea input#submitbutton, #contactarea input#submit {
+#login-page input[type="submit"],#respond input#submit, #contactarea input#submitbutton, #contactarea input#submit, input#searchsubmit, .wpuf-post-form input[type=submit], .wpuf-submit, .wpuf-button {
     background-image: url(img/noise.png), linear-gradient(bottom, #ececec 0, #fafafa 90%);
     background-image: url(img/noise.png), -o-linear-gradient(bottom, #ececec 0, #fafafa 90%);
     background-image: url(img/noise.png), -moz-linear-gradient(bottom, #ececec 0, #fafafa 90%);
@@ -1249,7 +1268,6 @@ a.comment-reply-link > span {
     background-image: url(img/noise.png), -ms-linear-gradient(bottom, #ececec 0, #fafafa 90%);
     background-image: url(img/noise.png), -webkit-gradient(linear, left bottom, left top, color-stop(0, #ececec), color-stop(0.9, #fafafa));
     font-family: 'Segoe UI';
-    text-transform: lowercase;
     border: 1px solid #ccc;
     outline: 0;
     -webkit-border-radius: 3px;
@@ -1268,7 +1286,7 @@ a.comment-reply-link > span {
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
     float: right;
 }
-#login-page input[type="submit"], #respond input#submit:hover, #nav-single .nav-previous a:hover, #nav-single .nav-next a:hover, p.tag-list a, p.tag-list a:hover, #contactarea input#submitbutton:hover, #contactarea input#submitbutton:focus, #contactarea input#submit:hover, #contactarea input#submit:focus {
+#login-page input[type="submit"], #respond input#submit:hover, #nav-single .nav-previous a:hover, #nav-single .nav-next a:hover, p.tag-list a, p.tag-list a:hover, #contactarea input#submitbutton:hover, #contactarea input#submitbutton:focus, #contactarea input#submit:hover, #contactarea input#submit:focus, input#searchsubmit, input#searchsubmit:hover, .wpuf-post-form input[type=submit]:hover, .wpuf-submit:hover, .wpuf-button:hover {
     background-image: url(img/noise.png), linear-gradient(bottom, #f3f3f3 0, #fcfcfc 90%);
     background-image: url(img/noise.png), -o-linear-gradient(bottom, #f3f3f3 0, #fcfcfc 90%);
     background-image: url(img/noise.png), -moz-linear-gradient(bottom, #f3f3f3 0, #fcfcfc 90%);
@@ -1278,7 +1296,7 @@ a.comment-reply-link > span {
     border-color: #1982d1;
     text-decoration: none
 }
-#login-page input[type="submit"]:active, #login-page input[type="text"]:focus, #login-page input[type="password"]:focus,#respond input#submit:active, #respond input[type="text"]:focus, #respond textarea:focus, #nav-single .nav-previous a:active, #nav-single .nav-next a:active, #contactarea input#submitbutton:active, #contactarea input:focus, #contactarea textarea:focus {
+#login-page input[type="submit"]:active, #login-page input[type="text"]:focus, #login-page input[type="password"]:focus,#respond input#submit:active, #respond input[type="text"]:focus, #respond textarea:focus, #nav-single .nav-previous a:active, #nav-single .nav-next a:active, #contactarea input#submitbutton:active, #contactarea input:focus, #contactarea textarea:focus, input#searchsubmit:focus, .wpuf-post-form input[type=submit]:active, .wpuf-submit:active, .wpuf-button:active {
     border: 1px solid #fafafa;
     background-color: transparent;
     background-image: url(img/noise.png), linear-gradient(bottom, #f5f5f5 86%, #f0f0f0 100%);
@@ -1628,11 +1646,11 @@ nav#nav-below:active {
 }
 #infscr-loading {
     line-height: 0;
-	margin-top: -2.25em;
-	left: 50%;
-	margin-left: 30px;
-	position: relative;
-	float: left;
+    margin-top: -2.25em;
+    left: 50%;
+    margin-left: 30px;
+    position: relative;
+    float: left;
 }
 #infscr-loading img {
 }

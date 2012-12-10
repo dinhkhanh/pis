@@ -9,7 +9,6 @@ get_header();
 <div id="login-page">
     <?php
     global $user_ID;
-
     if (!$user_ID) {
         if ($_POST) {
             if (empty($_POST['log'])) {

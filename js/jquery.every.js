@@ -16,22 +16,26 @@ function initialize() {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapMaker: true
         };
-
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        marker = new google.maps.Marker(map)
-        directionsDisplay.setMap(map);
-        directionsDisplay.setPanel(document.getElementById("map_directions"));
-        directionsService.route(travel, function(result, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(result);
-                console.log('ok')
+        if(document.getElementById("map_canvas")!=null){
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            marker = new google.maps.Marker(map)
+            directionsDisplay.setMap(map);
+            if (document.getElementById("map_directions")!=null) {
+                directionsDisplay.setPanel(document.getElementById("map_directions"));
+                directionsService.route(travel, function(result, status) {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(result);
+                    }
+                });
             }
-        });
+        }
+        else {
+            return null;
+        }
     };
     address = document.getElementById("input_address");
     if(address) {
         address = address.value;
-        console.log(address);
     } else {
         address="184 Nguyễn Văn Linh, Đà Nẵng, Việt Nam"
     };
@@ -58,7 +62,7 @@ function initialize() {
                 address: address
             });
         }
-    );
+        );
     }
     else {
         // No geolocation fallback
@@ -83,19 +87,19 @@ window.onload = loadScript;
 j(document).ready(function() {
     elem = j('#page');
     j('#nav_down').click(
-    function (e) {
-        j('html, body').animate({
-            scrollTop: elem.height()
-        }, 800, "easeOutExpo");
-    }
-);
+        function (e) {
+            j('html, body').animate({
+                scrollTop: elem.height()
+            }, 800, "easeOutExpo");
+        }
+        );
     j('#nav_up').click(
-    function (e) {
-        j('html, body').animate({
-            scrollTop: 0
-        }, 800, "easeOutExpo");
-    }
-);
+        function (e) {
+            j('html, body').animate({
+                scrollTop: 0
+            }, 800, "easeOutExpo");
+        }
+        );
     j('.notifications').click(function () {
         if(j(this).hasClass('open')) {
             j(this).removeClass('open');

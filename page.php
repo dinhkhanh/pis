@@ -7,8 +7,9 @@ get_header(); ?>
     <?php comments_template( '', true ); ?>
     <?php endwhile; // end of the loop. ?>
   </div>
-  <!-- #content --> 
-  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+  <!-- #content -->
+  <div id="footer">
+  <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?></div>
 </div>
 <!-- #primary -->
 

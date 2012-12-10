@@ -7,9 +7,7 @@ get_header();
 
 <section id="primary">
     <div id="content" role="main">
-
         <?php if (have_posts()) : ?>
-
             <!-- slide --><article  class="hentry">
                 <div id="slidorion">
                     <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
@@ -64,7 +62,7 @@ get_header();
                             <?php while (have_posts()) : the_post(); ?>
                                 <div class="link-header"><?php the_title(); ?></div>
                                 <div class="link-content">
-                                    <?php the_excerpt(); ?>
+                                    <?php the_excerpt('More'); ?>
                                 </div>
                                 <?php
                             endwhile;

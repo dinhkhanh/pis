@@ -70,13 +70,13 @@ get_header();
 
             if (strpos($user_input, '@')) {
                 $user_data = get_user_by_email($user_input);
-                if (empty($user_data) || $user_data->caps[administrator] == 1) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
+                if (empty($user_data)) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
                     echo "<div class='error'>Invalid E-mail address! <a href='".get_option('siteurl') . "/forgot-password'>Try again?</a></div>";
                     exit();
                 }
             } else {
                 $user_data = get_userdatabylogin($user_input);
-                if (empty($user_data) || $user_data->caps[administrator] == 1) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
+                if (empty($user_data)) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
                     echo "<div class='error'>Username doesn't exist! <a href='".get_option('siteurl') . "/forgot-password'>Try again?</a></div>";
                     exit();
                 }
