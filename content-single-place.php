@@ -14,22 +14,22 @@ $postID = $post->ID * -1;
         </div>
     </div>
     <div class="widget">
-        <h3 class="widget-title">Place's Info</h3>
+        <h3 class="widget-title">Thông tin</h3>
         <table>
             <tr>
-                <th>Verified: </th>
+                <th>Xác thực: </th>
                 <td><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span></td>
             </tr>
             <tr>
-                <th>Rating: </th>
+                <th>Xếp hạng: </th>
                 <td><span class="place-rating star-<?php echo get_post_meta($post->ID, 'rating', true); ?>"></span></td>
             </tr>
             <tr>
-                <th>Open: </th>
+                <th>Giờ mở cửa: </th>
                 <td><?php echo get_post_meta($post->ID, 'open', true); ?></td>
             </tr>
             <tr>
-                <th>Phone: </th>
+                <th>SĐT: </th>
                 <td><?php echo get_post_meta($post->ID, 'phone', true); ?></td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@ $postID = $post->ID * -1;
                 <td><?php echo get_post_meta($post->ID, 'website', true); ?></td>
             </tr>
             <tr>
-                <th>Author: &nbsp; </th>
+                <th>Người tạo: &nbsp; </th>
                 <td><?php echo get_the_author(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
             </tr>
         </table>

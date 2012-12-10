@@ -13,20 +13,20 @@ $postID = $post->ID*-1;
         </div>
     </div>
     <div class="widget">
-        <h3 class="widget-title">Event's info</h3>
+        <h3 class="widget-title">Thông tin</h3>
         <table>
             <tr>
-                <th>Host: </th>
+                <th>Tổ chức: </th>
                 <td><?php echo get_post_meta($post->ID, 'host', true); ?></td>
             </tr>
             <tr>
-                <th>Author: &nbsp; </th>
+                <th>Người tạo: &nbsp; </th>
                 <td><?php echo get_the_author(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
             </tr>
         </table>
     </div>
     <div class="widget widget_smSticky">
-        <h3 class="widget-title">Other events</h3>
+        <h3 class="widget-title">Sự kiện khác</h3>
         <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5, 'orderby' => 'rand', 'post__not_in'=>array($postID))); ?>
 
         <?php if (have_posts()) : ?>
@@ -53,7 +53,7 @@ $postID = $post->ID*-1;
         </ul>
     </div>
     <div class="widget">
-        <h3 class="widget-title">Direction</h3>
+        <h3 class="widget-title">Chỉ đường</h3>
         <div id="map_directions" style="width: 200px; height: 400px;"></div>
     </div>
 </div>
@@ -78,13 +78,13 @@ $postID = $post->ID*-1;
             <div class="event-info event-time">
                 <div class="event-start">
                     <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span><br />
-                    Start:
+                    Bắt đầu:
                     <?php echo get_post_meta($post->ID, 'start_date', true); ?>
                 </div>
                 <div class="event-end">
                     <span>
                         <?php echo get_post_meta($post->ID, 'end_time', true); ?> <br /></span>
-                    End:
+                    Kết thúc:
                     <?php echo get_post_meta($post->ID, 'end_date', true); ?>
                 </div>
                 <span class="clearfix"></span>
@@ -95,7 +95,7 @@ $postID = $post->ID*-1;
     <!-- .entry-header -->
 
     <div class="entry-content">
-        <h1 class="event-info-title">EVENT DETAIL</h1>
+        <h1 class="event-info-title">Chi tiết về sự kiện</h1>
         <?php the_content(); ?>
         <div id="map_canvas" style="width: 100%; height: 300px;"></div>
     </div>

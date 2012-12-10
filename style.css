@@ -419,6 +419,9 @@ ul li.logo img {
 #branding img {
     width: 160px
 }
+img.middle-align {
+    vertical-align: middle;
+}
 #access li:hover, #access .current-menu-item, #access .current-menu-ancestor, #access .current_page_item, #access .current_page_ancestor, body.home li.logo {
     border-color: #bbb;
     -webkit-box-shadow: inset 0 0 8px rgba(0,59,103,.3);
@@ -740,7 +743,7 @@ input#s {
     line-height: 2.6em;
     text-transform: uppercase;
 }
-.page .entry-content th {
+/*.page .entry-content th {
     letter-spacing: 0;
     text-transform: none;
     float: left;
@@ -749,14 +752,15 @@ input#s {
     margin: 0;
     font-size: 12px;
     font-family: inherit;
-}
+}*/
+
 .entry-content td, .comment-content td {
     border-top: 1px solid #ddd;
     padding: 6px 10px 6px 0;
 }
-.page .entry-content td {
+/*.page .entry-content td {
     border-top: none;
-}
+}*/
 .entry-content {
     min-height: 152px;
     font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
@@ -1497,6 +1501,7 @@ nav#colophon ul li, #recent_post ul li {
 }
 img#logo{
     margin: 5px 20px 0;
+    padding-bottom: 7px;
 }
 .notify_bar {
     float: left;

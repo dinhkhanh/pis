@@ -145,18 +145,27 @@ endif;
                                     <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Trang cá nhân</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url(); ?>/wp-admin/profile.php">Cập nhật thông tin</a>
+                                    <a href="<?php echo get_home_url() . '/my-places' ?>">Địa điểm của tôi</a>
+                                </li>
+                                 <li>
+                                    <a href="<?php echo get_home_url() . '/my-events' ?>">Sự kiện của tôi</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo get_home_url() . '/my-posts' ?>">Bài viết của tôi</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo get_home_url(); ?>/update-profile">Cập nhật thông tin</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Thoát</a>
                                 </li>
                             </ul>
                         </li>
-<?php } else {
-    ?>
+                    <?php } else {
+                        ?>
                         <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/register'; ?>">Đăng ký</a></h3></li>
                         <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/login'; ?>">Đăng nhập</a></h3></li>
-<?php } ?>
+                    <?php } ?>
                 </ul>
                 <!--
                  <h3 id='dolly'></h3>
@@ -170,13 +179,13 @@ endif;
                 if ('blank' == get_header_textcolor()) :
                     ?>
                     <div class="only-search<?php if (!empty($header_image)) : ?> with-image<?php endif; ?>">
-                    <?php get_search_form(); ?>
+                        <?php get_search_form(); ?>
                     </div>
                     <?php
                 else :
                     ?>
-    <?php get_search_form(); ?>
-<?php endif; ?>
+                    <?php get_search_form(); ?>
+                <?php endif; ?>
                 <!--
                 <nav id="access" role="navigation">
                 </nav>
