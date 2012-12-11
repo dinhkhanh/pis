@@ -494,7 +494,8 @@ input[type="text"], input[type="password"], textarea {
     border-color: #ccc
 }
 input#s {
-    font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif
+    font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+    height: 30px;
 }
 #primary {
     float: right;
@@ -1128,7 +1129,6 @@ a.comment-reply-link > span {
     font-size: 28px;
     font-weight: 100;
     padding: 0;
-    text-transform: lowercase
 }
 #reply-title small {
     font-size: 16px;
@@ -1335,14 +1335,13 @@ a.comment-reply-link > span {
 }
 #respond input[type="text"] {
     display: block;
-    height: 24px;
     width: 75%;
 }
 #respond .comment-form-author .required, #respond .comment-form-email .required {
     color: #BD3500;
     font-size: 22px;
     font-weight: bold;
-    left: 75%;
+    left: 55px;
     position: absolute;
     top: 40px;
     z-index: 1;
@@ -1540,6 +1539,14 @@ li.notify_icon:first-child {
 li.notifications:first-child {
     border-right: 1px solid #e8e8e8
 }
+.notify .addpost {
+    display: inline-block;
+    margin: -2px 0 0 10px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background: url(img/add.png) no-repeat;
+}
 li.credits {
     float: left;
     padding-right: 5px
@@ -1618,7 +1625,6 @@ p#dolly {
 }
 #content nav#nav-below a {
     width: 100%;
-    height: 100%;
     display: block;
     line-height: 4em;
     text-decoration: none;

@@ -192,7 +192,7 @@ function show_place_meta_box() {
             echo '</form>';
         }
 
-        function show_place_meta_box_frontend($post=null) {
+        function show_place_meta_box_frontend($post = null) {
             $location = get_post_meta($post->ID, 'location', true);
             $pros = get_post_meta($post->ID, 'pros', true);
             $cons = get_post_meta($post->ID, 'cons', true);
@@ -756,7 +756,7 @@ function show_place_meta_box() {
                                 if ($wp_query->max_num_pages > 1) :
                                     ?>
                                     <nav id="<?php echo $nav_id; ?>">
-                                        <?php next_posts_link(__('More&hellip;')); ?>
+                                        <?php next_posts_link(__('Xem thêm&hellip;')); ?>
                                     </nav>
                                     <!-- #nav-above -->
                                     <?php
@@ -829,7 +829,7 @@ function show_place_meta_box() {
                         if (!function_exists('new_length')):
 
                             function new_length($length) {
-                                return 20;
+                                return 18;
                             }
 
                             add_filter('excerpt_length', 'new_length');
@@ -881,9 +881,404 @@ function show_place_meta_box() {
                                     </tr>
                                     <tr>
                                         <th><label for="age">
-                                                <?php _e("Tuổi"); ?>
+                                                <?php _e("Ngày sinh"); ?>
                                             </label></th>
-                                        <td><input type="text" name="age" id="age" value="<?php echo esc_attr(get_the_author_meta('age', $user->ID)); ?>" class="regular-text" /></td>
+                                        <td>
+                                            <?php $day = esc_attr(get_the_author_meta('per_day', $user->ID)); ?>
+                                            <?php $month = esc_attr(get_the_author_meta('per_month', $user->ID)); ?>
+                                            <?php $year = esc_attr(get_the_author_meta('per_year', $user->ID)); ?>
+                                            <span class="bcr1" id="per_dob">
+                                                <select style="width: 45px;" id="per_day" name="per_day" class="select">
+                                                    <option value="-1">
+                                                        --
+                                                    </option>
+                                                    <option value="1" <?php selected($day, '1'); ?>>
+                                                        1
+                                                    </option>
+                                                    <option value="2" <?php selected($day, '2'); ?>>
+                                                        2
+                                                    </option>
+                                                    <option value="3" <?php selected($day, '3'); ?>>
+                                                        3
+                                                    </option>
+                                                    <option value="4" <?php selected($day, '4'); ?>>
+                                                        4
+                                                    </option>
+                                                    <option value="5" <?php selected($day, '5'); ?>>
+                                                        5
+                                                    </option>
+                                                    <option value="6" <?php selected($day, '6'); ?>>
+                                                        6
+                                                    </option>
+                                                    <option value="7" <?php selected($day, '7') ?>>
+                                                        7
+                                                    </option>
+                                                    <option value="8" <?php selected($day, '8'); ?>>
+                                                        8
+                                                    </option>
+                                                    <option value="9" <?php selected($day, '9'); ?>>
+                                                        9
+                                                    </option>
+                                                    <option value="10" <?php selected($day, '10'); ?>>
+                                                        10
+                                                    </option>
+                                                    <option value="11" <?php selected($day, '11'); ?>>
+                                                        11
+                                                    </option>
+                                                    <option value="12" <?php selected($day, '12'); ?>>
+                                                        12
+                                                    </option>
+                                                    <option value="13" <?php selected($day, '13'); ?>>
+                                                        13
+                                                    </option>
+                                                    <option value="14" <?php selected($day, '14'); ?>>
+                                                        14
+                                                    </option>
+                                                    <option value="15" <?php selected($day, '15'); ?>>
+                                                        15
+                                                    </option>
+                                                    <option value="16" <?php selected($day, '16'); ?>>
+                                                        16
+                                                    </option>
+                                                    <option value="17" <?php selected($day, '17'); ?>>
+                                                        17
+                                                    </option>
+                                                    <option value="18" <?php selected($day, '18'); ?>>
+                                                        18
+                                                    </option>
+                                                    <option value="19" <?php selected($day, '19'); ?>>
+                                                        19
+                                                    </option>
+                                                    <option value="20" <?php selected($day, '20'); ?>>
+                                                        20
+                                                    </option>
+                                                    <option value="21" <?php selected($day, '21'); ?>>
+                                                        21
+                                                    </option>
+                                                    <option value="22" <?php selected($day, '22'); ?>>
+                                                        22
+                                                    </option>
+                                                    <option value="23" <?php selected($day, '23'); ?>>
+                                                        23
+                                                    </option>
+                                                    <option value="24" <?php selected($day, '24'); ?>>
+                                                        24
+                                                    </option>
+                                                    <option value="25" <?php selected($day, '26'); ?>>
+                                                        25
+                                                    </option>
+                                                    <option value="26" <?php selected($day, '26'); ?>>
+                                                        26
+                                                    </option>
+                                                    <option value="27" <?php selected($day, '27'); ?>>
+                                                        27
+                                                    </option>
+                                                    <option value="28" <?php selected($day, '28'); ?>>
+                                                        28
+                                                    </option>
+                                                    <option value="29" <?php selected($day, '29'); ?>>
+                                                        29
+                                                    </option>
+                                                    <option value="30" <?php selected($day, '30'); ?>>
+                                                        30
+                                                    </option>
+                                                    <option value="31" <?php selected($day, '31'); ?>>
+                                                        31
+                                                    </option>
+                                                </select>
+
+                                                <select style="width: 45px;" id="per_month" name="per_month" class="select">
+                                                    <option value="-1">
+                                                        --
+                                                    </option>
+                                                    <option value="1" <?php selected($month, '1'); ?>>
+                                                        1
+                                                    </option>
+                                                    <option value="2" <?php selected($month, '2'); ?>>
+                                                        2
+                                                    </option>
+                                                    <option value="3" <?php selected($month, '3'); ?>>
+                                                        3
+                                                    </option>
+                                                    <option value="4" <?php selected($month, '4'); ?>>
+                                                        4
+                                                    </option>
+                                                    <option value="5" <?php selected($month, '5'); ?>>
+                                                        5
+                                                    </option>
+                                                    <option value="6" <?php selected($month, '6'); ?>>
+                                                        6
+                                                    </option>
+                                                    <option value="7" <?php selected($month, '7'); ?>>
+                                                        7
+                                                    </option>
+                                                    <option value="8" <?php selected($month, '8'); ?>>
+                                                        8
+                                                    </option>
+                                                    <option value="9" <?php selected($month, '9'); ?>>
+                                                        9
+                                                    </option>
+                                                    <option value="10" <?php selected($month, '10'); ?>>
+                                                        10
+                                                    </option>
+                                                    <option value="11" <?php selected($month, '11'); ?>>
+                                                        11
+                                                    </option>
+                                                    <option value="12" <?php selected($month, '12'); ?>>
+                                                        12
+                                                    </option>
+                                                </select>
+
+                                                <select style="width: 60px;" id="per_year" name="per_year" class="select">
+                                                    <option value="-1">
+                                                        ----
+                                                    </option>
+                                                    <option value="2012" <?php selected($year, '2012'); ?>>
+                                                        2012
+                                                    </option>
+                                                    <option value="2011" <?php selected($year, '2011'); ?>>
+                                                        2011
+                                                    </option>
+                                                    <option value="2010" <?php selected($year, '2010'); ?>>
+                                                        2010
+                                                    </option>
+                                                    <option value="2009" <?php selected($year, '2009'); ?>>
+                                                        2009
+                                                    </option>
+                                                    <option value="2008" <?php selected($year, '2008'); ?>>
+                                                        2008
+                                                    </option>
+                                                    <option value="2007" <?php selected($year, '2007'); ?>>
+                                                        2007
+                                                    </option>
+                                                    <option value="2006" <?php selected($year, '2006'); ?>>
+                                                        2006
+                                                    </option>
+                                                    <option value="2005" <?php selected($year, '2005'); ?>>
+                                                        2005
+                                                    </option>
+                                                    <option value="2004" <?php selected($year, '2004'); ?>>
+                                                        2004
+                                                    </option>
+                                                    <option value="2003" <?php selected($year, '2003'); ?>>
+                                                        2003
+                                                    </option>
+                                                    <option value="2002" <?php selected($year, '2002'); ?>>
+                                                        2002
+                                                    </option>
+                                                    <option value="2001" <?php selected($year, '2001'); ?>>
+                                                        2001
+                                                    </option>
+                                                    <option value="2000" <?php selected($year, '2000'); ?>>
+                                                        2000
+                                                    </option>
+                                                    <option value="1999" <?php selected($year, '1999'); ?>>
+                                                        1999
+                                                    </option>
+                                                    <option value="1998" <?php selected($year, '1998'); ?>>
+                                                        1998
+                                                    </option>
+                                                    <option value="1997" <?php selected($year, '1997'); ?>>
+                                                        1997
+                                                    </option>
+                                                    <option value="1996" <?php selected($year, '1996'); ?>>
+                                                        1996
+                                                    </option>
+                                                    <option value="1995" <?php selected($year, '1995'); ?>>
+                                                        1995
+                                                    </option>
+                                                    <option value="1994" <?php selected($year, '1994'); ?>>
+                                                        1994
+                                                    </option>
+                                                    <option value="1993" <?php selected($year, '1993'); ?>>
+                                                        1993
+                                                    </option>
+                                                    <option value="1992" <?php selected($year, '1992'); ?>>
+                                                        1992
+                                                    </option>
+                                                    <option value="1991" <?php selected($year, '1991'); ?>>
+                                                        1991
+                                                    </option>
+                                                    <option value="1990" <?php selected($year, '1990'); ?>>
+                                                        1990
+                                                    </option>
+                                                    <option value="1989" <?php selected($year, '1989'); ?>>
+                                                        1989
+                                                    </option>
+                                                    <option value="1988" <?php selected($year, '1988'); ?>>
+                                                        1988
+                                                    </option>
+                                                    <option value="1987" <?php selected($year, '1987'); ?>>
+                                                        1987
+                                                    </option>
+                                                    <option value="1986" <?php selected($year, '1986'); ?>>
+                                                        1986
+                                                    </option>
+                                                    <option value="1985" <?php selected($year, '1985'); ?>>
+                                                        1985
+                                                    </option>
+                                                    <option value="1984" <?php selected($year, '1984'); ?>>
+                                                        1984
+                                                    </option>
+                                                    <option value="1983" <?php selected($year, '1983'); ?>>
+                                                        1983
+                                                    </option>
+                                                    <option value="1982" <?php selected($year, '1982'); ?>>
+                                                        1982
+                                                    </option>
+                                                    <option value="1981" <?php selected($year, '1981'); ?>>
+                                                        1981
+                                                    </option>
+                                                    <option value="1980" <?php selected($year, '1980'); ?>>
+                                                        1980
+                                                    </option>
+                                                    <option value="1979" <?php selected($year, '1979'); ?>>
+                                                        1979
+                                                    </option>
+                                                    <option value="1978" <?php selected($year, '1978'); ?>>
+                                                        1978
+                                                    </option>
+                                                    <option value="1977" <?php selected($year, '1977'); ?>>
+                                                        1977
+                                                    </option>
+                                                    <option value="1976" <?php selected($year, '1976'); ?>>
+                                                        1976
+                                                    </option>
+                                                    <option value="1975" <?php selected($year, '1975'); ?>>
+                                                        1975
+                                                    </option>
+                                                    <option value="1974" <?php selected($year, '1974'); ?>>
+                                                        1974
+                                                    </option>
+                                                    <option value="1973" <?php selected($year, '1973'); ?>>
+                                                        1973
+                                                    </option>
+                                                    <option value="1972" <?php selected($year, '1972'); ?>>
+                                                        1972
+                                                    </option>
+                                                    <option value="1971" <?php selected($year, '1971'); ?>>
+                                                        1971
+                                                    </option>
+                                                    <option value="1970" <?php selected($year, '1970'); ?>>
+                                                        1970
+                                                    </option>
+                                                    <option value="1969" <?php selected($year, '1969'); ?>>
+                                                        1969
+                                                    </option>
+                                                    <option value="1968" <?php selected($year, '1968'); ?>>
+                                                        1968
+                                                    </option>
+                                                    <option value="1967" <?php selected($year, '1967'); ?>>
+                                                        1967
+                                                    </option>
+                                                    <option value="1966" <?php selected($year, '1966'); ?>>
+                                                        1966
+                                                    </option>
+                                                    <option value="1965" <?php selected($year, '1965'); ?>>
+                                                        1965
+                                                    </option>
+                                                    <option value="1964" <?php selected($year, '1964'); ?>>
+                                                        1964
+                                                    </option>
+                                                    <option value="1963" <?php selected($year, '1963'); ?>>
+                                                        1963
+                                                    </option>
+                                                    <option value="1962" <?php selected($year, '1962'); ?>>
+                                                        1962
+                                                    </option>
+                                                    <option value="1961" <?php selected($year, '1961'); ?>>
+                                                        1961
+                                                    </option>
+                                                    <option value="1960" <?php selected($year, '1960'); ?>>
+                                                        1960
+                                                    </option>
+                                                    <option value="1959" <?php selected($year, '1959'); ?>>
+                                                        1959
+                                                    </option>
+                                                    <option value="1958" <?php selected($year, '1958'); ?>>
+                                                        1958
+                                                    </option>
+                                                    <option value="1957" <?php selected($year, '1957'); ?>>
+                                                        1957
+                                                    </option>
+                                                    <option value="1956" <?php selected($year, '1956'); ?>>
+                                                        1956
+                                                    </option>
+                                                    <option value="1955" <?php selected($year, '1955'); ?>>
+                                                        1955
+                                                    </option>
+                                                    <option value="1954" <?php selected($year, '1954'); ?>>
+                                                        1954
+                                                    </option>
+                                                    <option value="1953" <?php selected($year, '1953'); ?>>
+                                                        1953
+                                                    </option>
+                                                    <option value="1952" <?php selected($year, '1952'); ?>>
+                                                        1952
+                                                    </option>
+                                                    <option value="1951" <?php selected($year, '1951'); ?>>
+                                                        1951
+                                                    </option>
+                                                    <option value="1950" <?php selected($year, '1950'); ?>>
+                                                        1950
+                                                    </option>
+                                                    <option value="1949" <?php selected($year, '1949'); ?>>
+                                                        1949
+                                                    </option>
+                                                    <option value="1948" <?php selected($year, '1948'); ?>>
+                                                        1948
+                                                    </option>
+                                                    <option value="1947" <?php selected($year, '1947'); ?>>
+                                                        1947
+                                                    </option>
+                                                    <option value="1946" <?php selected($year, '1946'); ?>>
+                                                        1946
+                                                    </option>
+                                                    <option value="1945" <?php selected($year, '1945'); ?>>
+                                                        1945
+                                                    </option>
+                                                    <option value="1944" <?php selected($year, '1944'); ?>>
+                                                        1944
+                                                    </option>
+                                                    <option value="1943" <?php selected($year, '1943'); ?>>
+                                                        1943
+                                                    </option>
+                                                    <option value="1942" <?php selected($year, '1942'); ?>>
+                                                        1942
+                                                    </option>
+                                                    <option value="1941" <?php selected($year, '1941'); ?>>
+                                                        1941
+                                                    </option>
+                                                    <option value="1940" <?php selected($year, '1940'); ?>>
+                                                        1940
+                                                    </option>
+                                                    <option value="1939" <?php selected($year, '1939'); ?>>
+                                                        1939
+                                                    </option>
+                                                    <option value="1938" <?php selected($year, '1938'); ?>>
+                                                        1938
+                                                    </option>
+                                                    <option value="1937" <?php selected($year, '1937'); ?>>
+                                                        1937
+                                                    </option>
+                                                    <option value="1936" <?php selected($year, '1936'); ?>>
+                                                        1936
+                                                    </option>
+                                                    <option value="1935" <?php selected($year, '1935'); ?>>
+                                                        1935
+                                                    </option>
+                                                    <option value="1934" <?php selected($year, '1934'); ?>>
+                                                        1934
+                                                    </option>
+                                                    <option value="1933" <?php selected($year, '1933'); ?>>
+                                                        1933
+                                                    </option>
+                                                    <option value="1932" <?php selected($year, '1932'); ?>>
+                                                        1932
+                                                    </option>
+                                                </select>
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><label for="user_address">
@@ -905,7 +1300,9 @@ function show_place_meta_box() {
                                     return false;
                                 } //!current_user_can('edit_user', $user_id)
                                 update_usermeta($user_id, 'gender', $_POST['gender']);
-                                update_usermeta($user_id, 'age', $_POST['age']);
+                                update_usermeta($user_id, 'per_day', $_POST['per_day']);
+                                update_usermeta($user_id, 'per_month', $_POST['per_month']);
+                                update_usermeta($user_id, 'per_year', $_POST['per_year']);
                                 update_usermeta($user_id, 'user_address', $_POST['user_address']);
                             }
 

@@ -14,7 +14,7 @@ $postID = $post->ID*-1;
         </div>
     </div>
     <div class="widget widget_smSticky">
-        <h3 class="widget-title">Other posts</h3>
+        <h3 class="widget-title">Bài viết khác</h3>
         <?php query_posts(array('post_type' => array('post'), 'posts_per_page' => 5, 'orderby' => 'rand', 'post__not_in'=>array($postID))); ?>
 
         <?php if (have_posts()) : ?>

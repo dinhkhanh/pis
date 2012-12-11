@@ -32,21 +32,21 @@ get_header();
             $user_email = $user_data->user_email;
 
             if (!empty($reset_key) && !empty($user_data)) {
-                $new_password = wp_generate_password(7, false);
+                $new_password = wp_generate_password(12, false);
                 //echo $new_password; exit();
                 wp_set_password($new_password, $user_data->ID);
                 //mailing reset details to the user
-                $message = __('Your new password for the account at:') . "\r\n\r\n";
+                $message = __('Mật khẩu mới của bạn tại:') . "\r\n\r\n";
                 $message .= get_option('siteurl') . "\r\n\r\n";
-                $message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-                $message .= sprintf(__('Password: %s'), $new_password) . "\r\n\r\n";
-                $message .= __('You can now login with your new password at: ') . get_option('siteurl') . "/login" . "\r\n\r\n";
+                $message .= sprintf(__('Tài khoản: %s'), $user_login) . "\r\n\r\n";
+                $message .= sprintf(__('Mật khẩu: %s'), $new_password) . "\r\n\r\n";
+                $message .= __('Bạn có thể đăng nhập tại at: ') . get_option('siteurl') . "/login" . "\r\n\r\n";
 
-                if ($message && !wp_mail($user_email, 'Password Reset Request', $message)) {
-                    echo "<div class='error'>Email failed to send for some unknown reason</div>";
+                if ($message && !wp_mail($user_email, '[PIS] Quên mật khẩu', $message)) {
+                    echo "<div class='error'>Email chưa được gửi vì một lý do nào đó.</div>";
                     exit();
                 } else {
-                    echo '<div class="success">Your password was reset successfully. Please check your email to get new password. <a href="'.get_option("siteurl") . '"/login">Login?</a></div>';
+                    echo '<div class="success">Mật khẩu của bạn đã được khởi tạo lại thành công. Vui lòng kiểm tra hộp thư của bạn để biết chi tiết. <a href="'.get_option("siteurl") . '"/login">Đăng nhập?</a></div>';
 //                    $redirect_to = get_bloginfo('url') . "/login?action=reset_success";
 //                    wp_safe_redirect($redirect_to);
                     exit();
@@ -62,7 +62,7 @@ get_header();
                 exit("No trick please");
             }
             if (empty($_POST['user_input'])) {
-                echo "<div class='error'>Please enter your Username or E-mail address. <a href='".get_option('siteurl') . "/forgot-password'>Try again?</a></div>";
+                echo "<div class='error'>Vui lòng nhập tài khoản hoặc email. <a href='".get_option('siteurl') . "/forgot-password'>Thử lại?</a></div>";
                 exit();
             }
             //We shall SQL escape the input
@@ -71,13 +71,13 @@ get_header();
             if (strpos($user_input, '@')) {
                 $user_data = get_user_by_email($user_input);
                 if (empty($user_data)) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
-                    echo "<div class='error'>Invalid E-mail address! <a href='".get_option('siteurl') . "/forgot-password'>Try again?</a></div>";
+                    echo "<div class='error'>Email không hợp lệ! <a href='".get_option('siteurl') . "/forgot-password'>Thử lại?</a></div>";
                     exit();
                 }
             } else {
                 $user_data = get_userdatabylogin($user_input);
                 if (empty($user_data)) { //delete the condition $user_data->caps[administrator] == 1, if you want to allow password reset for admins also
-                    echo "<div class='error'>Username doesn't exist! <a href='".get_option('siteurl') . "/forgot-password'>Try again?</a></div>";
+                    echo "<div class='error'>Tài khoản không tồn tại! <a href='".get_option('siteurl') . "/forgot-password'>Thử lại?</a></div>";
                     exit();
                 }
             }
@@ -93,18 +93,18 @@ get_header();
             }
 
             //mailing reset details to the user
-            $message = __('Someone requested that the password be reset for the following account:') . "\r\n\r\n";
+            $message = __('Vừa có một yêu cầu khởi tạo lại mật khẩu tại:') . "\r\n\r\n";
             $message .= get_option('siteurl') . "\r\n\r\n";
-            $message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-            $message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-            $message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
+            $message .= sprintf(__('Tài khoản: %s'), $user_login) . "\r\n\r\n";
+            $message .= __('Nếu không phải bạn thực hiện yêu cầu đó, vui lòng bỏ qua email này..') . "\r\n\r\n";
+            $message .= __('Để khởi tạo lại mật khẩu, vui lòng truy cập đường link:') . "\r\n\r\n";
             $message .= tg_validate_url() . "action=reset_pwd&key=$key&login=" . rawurlencode($user_login) . "\r\n";
 
-            if ($message && !wp_mail($user_email, 'Password Reset Request', $message)) {
-                echo "<div class='error'>Email failed to send for some unknown reason.</div>";
+            if ($message && !wp_mail($user_email, '[PIS] Quên mật khẩu', $message)) {
+                echo "<div class='error'>Email chưa được gửi vì một lý do nào đó.</div>";
                 exit();
             } else {
-                echo "<div class='success'>We have just sent you an email with Password reset instructions.</div>";
+                echo "<div class='success'>Chúng tôi đã gửi email cho bạn. Vui lòng kiểm tra hòm thư và làm theo hướng đẫn để khởi tạo lại mật khẩu.</div>";
                 exit();
             }
         } else {
@@ -123,7 +123,7 @@ get_header();
 
                 <?php endwhile; ?>
             <?php else : ?>
-                <h2><?php _e('Not Found'); ?></h1>
+                <h2><?php _e('Không tìm thấy'); ?></h1>
                 <?php endif; ?>
         </div><!-- login-page -->
         <?php

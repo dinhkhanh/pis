@@ -22,12 +22,13 @@ function initialize() {
             directionsDisplay.setMap(map);
             if (document.getElementById("map_directions")!=null) {
                 directionsDisplay.setPanel(document.getElementById("map_directions"));
-                directionsService.route(travel, function(result, status) {
-                    if (status === google.maps.DirectionsStatus.OK) {
-                        directionsDisplay.setDirections(result);
-                    }
-                });
             }
+            directionsService.route(travel, function(result, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(result);
+                }
+            });
+
         }
         else {
             return null;

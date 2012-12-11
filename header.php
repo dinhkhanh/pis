@@ -98,8 +98,10 @@ endif;
                     <li class="notifications"> <a href="<?php echo get_home_url(); ?>"><img src="<?php echo theme_dir; ?>/img/logo.png" width=34 id="logo" /></a> </li>
                     <li class="notifications notify_icon"><h3>Địa điểm</h3>
                         <ul class="notify" id="place_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/place">Tất cả</a></li>
-                            <li><a href="<?php echo get_home_url(); ?>/add-place">Thêm mới</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/place/">Tất cả</a></li>
+                            <?php if (is_user_logged_in()) { ?>
+                                <li><a href="<?php echo get_home_url(); ?>/add-place/">Thêm mới<span class="addpost"></span></a></li>
+                            <?php } ?>
                             <?php
                             $places = get_categories('taxonomy=places');
                             foreach ($places as $place) :
@@ -110,8 +112,9 @@ endif;
                     </li>
                     <li class="notifications notify_icon"> <h3>Sự kiện</h3>
                         <ul class="notify" id="event_bar">
-                            <li><a href="<?php echo get_home_url(); ?>/event">Tất cả</a></li>
-                            <li><a href="<?php echo get_home_url(); ?>/add-event">Thêm mới</a></li>
+                            <li><a href="<?php echo get_home_url(); ?>/event/">Tất cả</a></li>
+                            <?php if (is_user_logged_in()) { ?>
+                                <li><a href="<?php echo get_home_url(); ?>/add-event/">Thêm mới<span class="addpost"></span></a></li><?php } ?>
                             <?php
                             $events = get_categories('taxonomy=events');
                             foreach ($events as $event) :
@@ -120,9 +123,20 @@ endif;
                             <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/news">Tin tức</a></h3>
+                    <li class="notifications notify_icon"> <h3>Bài viết</h3>
+                        <ul class="notify" id="news-bar">
+                            <li><a href="<?php echo get_home_url(); ?>/news/">Tất cả</a></li>
+                            <?php if (is_user_logged_in()) { ?>
+                                <li><a href="<?php echo get_home_url(); ?>/add-post/">Thêm mới<span class="addpost"></span></a></li> <?php } ?>
+                            <?php
+                            $news = get_categories();
+                            foreach ($news as $new) :
+                                ?>
+                                <li><a href="<?php echo get_category_link($new->term_id) ?>"><?php echo $new->name ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
                     </li>
-                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/map">Bản đồ</a></h3>
+                    <li class="notifications notify_icon"> <h3><a href="<?php echo get_home_url(); ?>/map/">Bản đồ</a></h3>
                     </li>
                 </ul>
                 <ul class="user_bar alignright">
@@ -142,19 +156,19 @@ endif;
                                     </li>
                                 <?php } ?>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>">Trang cá nhân</a>
+                                    <a href="<?php echo get_home_url() . '/author/' . $current_user->user_login; ?>/">Trang cá nhân</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/my-places' ?>">Địa điểm của tôi</a>
-                                </li>
-                                 <li>
-                                    <a href="<?php echo get_home_url() . '/my-events' ?>">Sự kiện của tôi</a>
+                                    <a href="<?php echo get_home_url() . '/my-places/' ?>">Địa điểm của tôi</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url() . '/my-posts' ?>">Bài viết của tôi</a>
+                                    <a href="<?php echo get_home_url() . '/my-events/' ?>">Sự kiện của tôi</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url(); ?>/update-profile">Cập nhật thông tin</a>
+                                    <a href="<?php echo get_home_url() . '/my-posts/' ?>">Bài viết của tôi</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo get_home_url(); ?>/update-profile/">Cập nhật thông tin</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Thoát</a>
@@ -163,8 +177,8 @@ endif;
                         </li>
                     <?php } else {
                         ?>
-                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/register'; ?>">Đăng ký</a></h3></li>
-                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/login'; ?>">Đăng nhập</a></h3></li>
+                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/register/'; ?>">Đăng ký</a></h3></li>
+                        <li class="notifications notify_icon"><h3><a href="<?php echo get_home_url() . '/login/'; ?>">Đăng nhập</a></h3></li>
                     <?php } ?>
                 </ul>
                 <!--
@@ -195,7 +209,7 @@ endif;
             <!-- #branding -->
 
             <div id="main">
-                <?php if (is_home() || is_archive()) { ?>
+                <?php if (is_home() || is_archive()||has_shortcode('wpuf_addpost')||has_shortcode('wpuf_dashboard')) { ?>
                     <div id="map_canvas" style="width: 100%; height: 300px; margin-bottom: 1px"></div>
                 <?php } ?>
 

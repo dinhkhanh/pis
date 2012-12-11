@@ -12,5 +12,7 @@ get_header(); ?>
   <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?></div>
 </div>
 <!-- #primary -->
-
+<?php if(has_shortcode('wpuf_addpost')||has_shortcode('wpuf_dashboard')){
+    get_sidebar();
+} ?>
 <?php get_footer(); ?>

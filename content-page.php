@@ -9,15 +9,15 @@
     </h1>
   </header>
   <!-- .entry-header -->
-  
+
   <div class="entry-content">
     <?php the_content(); ?>
-    <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:') . '</span>', 'after' => '</div>' ) ); ?>
+    <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Trang:') . '</span>', 'after' => '</div>' ) ); ?>
   </div>
   <!-- .entry-content -->
 
-  <!-- .entry-meta --> 
-  
+  <!-- .entry-meta -->
+
 </article>
-<!-- #post-<?php the_ID(); ?> --> 
+<!-- #post-<?php the_ID(); ?> -->
 

@@ -32,11 +32,11 @@ get_header();
                                                 </div> <!-- end event address -->
                                                 <div class="event-info event-time">
                                                     <div class="event-start">
-                                                        Start: <br />
+                                                        Bắt đầu: <br />
                                                         <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
                                                     </div>
                                                     <div class="event-end">
-                                                        End: <br />
+                                                        Kết thúc: <br />
                                                         <span>
                                                             <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
                                                     </div>
@@ -53,12 +53,12 @@ get_header();
                             wp_reset_query();
                             ?>
                         </div>
-                        <?php endif;
+                    <?php endif;
                     ?>
-                        <div id="accordion">
+                    <div id="accordion">
 
-                    <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
-                    <?php if (have_posts()) : ?>
+                        <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5)); ?>
+                        <?php if (have_posts()) : ?>
                             <?php while (have_posts()) : the_post(); ?>
                                 <div class="link-header"><?php the_title(); ?></div>
                                 <div class="link-content">
@@ -66,12 +66,13 @@ get_header();
                                 </div>
                                 <?php
                             endwhile;
-                            wp_reset_query(); endif;
-                            ?>
-                        </div>
+                            wp_reset_query();
+                        endif;
+                        ?>
                     </div>
-                </article>
-            <?php        endif;
+                </div>
+            </article>
+        <?php endif;
         ?>
         <!-- end slide -->
         <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 6)); ?>
@@ -96,16 +97,16 @@ get_header();
                         ?></p>
                         </div>
                         <div class="temp-event-info temp-event-right">
-                            Start: <br />
+                            Bắt đầu: <br />
                             <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
                         </div>
                         <div class="temp-event-info temp-event-left">
-        <?php the_excerpt(); ?>
+                        <?php the_excerpt(); ?>
                         </div>
                         <div class="temp-event-info temp-event-right">
-                            End: <br />
+                            Kết thúc: <br />
                             <span>
-        <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
+                                <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
                         </div>
                         <span class="clearfix"></span>
                         <span class="clearfix"></span>
@@ -117,14 +118,14 @@ get_header();
             <article id="post-0" class="post no-results not-found">
                 <header class="entry-header">
                     <h1 class="entry-title">
-    <?php _e('Nothing Found'); ?>
+    <?php _e('Không tìm thấy'); ?>
                     </h1>
                 </header>
                 <!-- .entry-header -->
 
                 <div class="entry-content">
                     <p>
-                    <?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'); ?>
+                    <?php _e('Không tìm thấy bài viết nào.'); ?>
                     </p>
     <?php get_search_form(); ?>
                 </div>

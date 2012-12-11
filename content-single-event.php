@@ -25,6 +25,10 @@ $postID = $post->ID*-1;
             </tr>
         </table>
     </div>
+    <div class="widget">
+        <h3 class="widget-title">Chỉ đường</h3>
+        <div id="map_directions" style="width: 200px; height: 400px;"></div>
+    </div>
     <div class="widget widget_smSticky">
         <h3 class="widget-title">Sự kiện khác</h3>
         <?php query_posts(array('post_type' => array('event'), 'posts_per_page' => 5, 'orderby' => 'rand', 'post__not_in'=>array($postID))); ?>
@@ -51,10 +55,6 @@ $postID = $post->ID*-1;
             wp_reset_query();
             ?>
         </ul>
-    </div>
-    <div class="widget">
-        <h3 class="widget-title">Chỉ đường</h3>
-        <div id="map_directions" style="width: 200px; height: 400px;"></div>
     </div>
 </div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

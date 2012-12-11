@@ -42,8 +42,13 @@ $postID = $post->ID * -1;
             </tr>
         </table>
     </div>
+
+    <div class="widget">
+        <h3 class="widget-title">Chỉ đường</h3>
+        <div id="map_directions" style="width: 200px; height: 400px;"></div>
+    </div>
     <div class="widget widget_smSticky">
-        <h3 class="widget-title">Other places</h3>
+        <h3 class="widget-title">Địa điểm khác</h3>
 <?php query_posts(array('post_type' => array('place'), 'posts_per_page' => 5, 'orderby' => 'rand', 'post__not_in' => array($postID))); ?>
 
 <?php if (have_posts()) : ?>
@@ -70,10 +75,6 @@ wp_reset_query();
         </ul>
     </div>
 
-    <div class="widget">
-        <h3 class="widget-title">Direction</h3>
-        <div id="map_directions" style="width: 200px; height: 400px;"></div>
-    </div>
 </div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
@@ -86,7 +87,7 @@ wp_reset_query();
         ?>
         <div class="place_header">
             <h1 class="entry-title">
-<?php the_title(); ?>&nbsp;<span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span>
+<?php the_title(); ?>&nbsp;<span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'Địa điểm đã được xác thực.' : 'Địa điểm chưa được xác thực.' ?>"></span>
             </h1>
             <hr />
             <p class="place_address">
@@ -106,7 +107,7 @@ $categories = get_the_terms($post->ID, 'places');
 $separator = ' ';
 if ($categories) {
     foreach ($categories as $category) {
-        echo '<a href="' . get_term_link($category->slug, 'places') . '" title="' . esc_attr(sprintf(__("View all places in %s"), $category->name)) . '">' . $category->name . '</a>' . $separator;
+        echo '<a href="' . get_term_link($category->slug, 'places') . '" title="' . esc_attr(sprintf(__("Xem tất cả địa điểm thuộc %s"), $category->name)) . '">' . $category->name . '</a>' . $separator;
     }
 }
 ?></td>

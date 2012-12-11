@@ -33,11 +33,11 @@ get_header();
                                             </div> <!-- end event address -->
                                             <div class="event-info event-time">
                                                 <div class="event-start">
-                                                    Start: <br />
+                                                    Bắt đầu: <br />
                                                     <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
                                                 </div>
                                                 <div class="event-end">
-                                                    End: <br />
+                                                    Kết thúc: <br />
                                                     <span>
                                                         <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
                                                 </div>
@@ -92,14 +92,14 @@ get_header();
                     echo ', '.get_post_meta($post->ID, 'location', true) ?></p>
                         </div>
                         <div class="temp-event-info temp-event-right">
-                            Start: <br />
+                            Bắt đầu: <br />
                             <span><?php echo get_post_meta($post->ID, 'start_time', true); ?></span>
                         </div>
                         <div class="temp-event-info temp-event-left">
                             <?php the_excerpt(); ?>
                         </div>
                         <div class="temp-event-info temp-event-right">
-                            End: <br />
+                            Kết thúc: <br />
                             <span>
                              <?php echo get_post_meta($post->ID, 'end_time', true); ?></span>
                         </div>
@@ -113,14 +113,14 @@ get_header();
     <article id="post-0" class="post no-results not-found">
         <header class="entry-header">
             <h1 class="entry-title">
-    <?php _e('Nothing Found'); ?>
+    <?php _e('Không có bài viết'); ?>
             </h1>
         </header>
         <!-- .entry-header -->
 
         <div class="entry-content">
             <p>
-            <?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'); ?>
+            <?php _e('Không tìm thấy bài viết.'); ?>
             </p>
     <?php get_search_form(); ?>
         </div>

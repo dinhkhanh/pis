@@ -14,7 +14,7 @@ get_header();
                     <?php if (is_search()) { ?>
                                value="<?php the_search_query(); ?>"
                            <?php } else {
-                               ?>value="Enter keywords &hellip;" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"
+                               ?>value="Nhập từ khóa &hellip;" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"
                            <?php } ?> />
 
                     <?php $query_types = get_query_var('post_type'); ?>
@@ -23,26 +23,26 @@ get_header();
                     if (in_array('post', $query_types)) {
                         echo 'checked="checked"';
                     }
-                    ?> /><label>News</label>
+                    ?> /><label>Bài viết</label>
                         <input type="checkbox" name="post_type[]" value="place" <?php
                                if (in_array('place', $query_types)) {
                                    echo 'checked="checked"';
                                }
-                    ?> /><label>Places</label>
+                    ?> /><label>Địa điểm</label>
                         <input type="checkbox" name="post_type[]" value="event" <?php
                                if (in_array('event', $query_types)) {
                                    echo 'checked="checked"';
                                }
-                    ?> /><label>Events</label>
+                    ?> /><label>Sự kiện</label>
                     </div>
-                    <input type="submit" id="searchsubmit" value="Search" />
+                    <input type="submit" id="searchsubmit" value="Tìm kiếm" />
                     <div class="clearfix"></div>
                 </form>
             </h1>
         </header>
         <?php if (have_posts()) : ?>
             <header class="page-header">
-                <h1 class="page-title"><?php printf(__('Search Results for: %s', 'moc'), '<span>' . get_search_query() . '</span>'); ?></h1>
+                <h1 class="page-title"><?php printf(__('Kết quả tìm kiếm của: %s', 'moc'), '<span>' . get_search_query() . '</span>'); ?></h1>
             </header>
             <?php /* Start the Loop */ ?>
             <?php while (have_posts()) : the_post(); ?>
@@ -55,10 +55,10 @@ get_header();
         <?php else : ?>
             <article id="post-0" class="post no-results not-found">
                 <header class="entry-header">
-                    <h1 class="entry-title"><?php _e('Nothing Found', 'moc'); ?></h1>
+                    <h1 class="entry-title"><?php _e('Không tìm thấy', 'moc'); ?></h1>
                 </header><!-- .entry-header -->
                 <div class="entry-content">
-                    <p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'moc'); ?></p>
+                    <p><?php _e('Không tìm thấy bài viết phù hợp với từ khóa. Vui lòng thử lại', 'moc'); ?></p>
                     <?php get_search_form(); ?>
                 </div><!-- .entry-content -->
             </article><!-- #post-0 -->

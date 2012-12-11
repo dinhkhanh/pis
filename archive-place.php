@@ -34,11 +34,11 @@ get_header();
                                                 </div> <!-- end event address -->
                                                 <div class="event-info event-time">
                                                     <div class="event-start">
-                                                        Open <br />
+                                                        Giờ mở cửa <br />
                                                         <?php echo get_post_meta($post->ID, 'open', true); ?>
                                                     </div>
                                                     <div class="event-end">
-                                                        Business type<br />
+                                                        Lĩnh vực<br />
                                                         <?php
                                                         $categories = get_the_terms($post->ID, 'places');
                                                         $separator = ' ';
@@ -100,7 +100,7 @@ get_header();
                             <br /><br />
                             <h1><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span>&nbsp;<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
                             <span><?php echo get_post_meta($post->ID, 'location', true); ?></span><br />
-                            <span>Created by <?php the_author_posts_link(); ?></span>
+                            <span>Người tạo: <?php the_author_posts_link(); ?></span>
                             <span class="clearfix"></span>
                         </div>
                     </div> <!-- end place info -->
@@ -111,14 +111,14 @@ get_header();
             <article id="post-0" class="post no-results not-found">
                 <header class="entry-header">
                     <h1 class="entry-title">
-    <?php _e('Nothing Found'); ?>
+    <?php _e('Không tìm thấy'); ?>
                     </h1>
                 </header>
                 <!-- .entry-header -->
 
                 <div class="entry-content">
                     <p>
-                    <?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'); ?>
+                    <?php _e('Không tìm thấy bài viết.'); ?>
                     </p>
     <?php get_search_form(); ?>
                 </div>

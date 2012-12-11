@@ -8,11 +8,11 @@
                     <?php if (is_day()) : ?>
                         <?php printf(__('%s'), '<span>' . get_the_date() . '</span>'); ?>
                     <?php elseif (is_month()) : ?>
-                        <?php printf(__('%s'), '<span>' . get_the_date(_x('F Y', 'monthly archives date format')) . '</span>'); ?>
+                        <?php printf(__('%s'), '<span>' . get_the_date(_x('F Y', 'lưu trữ tháng')) . '</span>'); ?>
                     <?php elseif (is_year()) : ?>
-                        <?php printf(__('%s'), '<span>' . get_the_date(_x('Y', 'yearly archives date format')) . '</span>'); ?>
+                        <?php printf(__('%s'), '<span>' . get_the_date(_x('Y', 'lưu trữ năm')) . '</span>'); ?>
                     <?php else : ?>
-                        <?php _e('Blog Archives'); ?>
+                        <?php _e('Lưu trữ'); ?>
                     <?php endif; ?>
                 </h1>
             </header>
@@ -25,14 +25,14 @@
             <article id="post-0" class="post no-results not-found">
                 <header class="entry-header">
                     <h1 class="entry-title">
-                        <?php _e('Nothing Found'); ?>
+                        <?php _e('Không tìm thấy'); ?>
                     </h1>
                 </header>
                 <!-- .entry-header -->
 
                 <div class="entry-content">
                     <p>
-                        <?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'); ?>
+                        <?php _e('Không tìm thấy bài viết.'); ?>
                     </p>
                     <?php get_search_form(); ?>
                 </div>
