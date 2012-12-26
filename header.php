@@ -1,17 +1,5 @@
 <?php
-/**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="main">
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
- */
-//if (!is_user_logged_in()) {
-//    header('Location: '.wp_login_url(home_url()));
-//// You page code goes here
-//}
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 6]>
@@ -26,13 +14,8 @@
 <!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
 <html lang="vi-VN" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Blog">
     <!--<![endif]-->
-    <head prefix="og: http://ogp.me/ns# Blog:http://ogp.me/ns/apps/khimoccom#" profile="http://gmpg.org/xfn/11">
+    <head>
         <meta charset="<?php bloginfo('charset'); ?>" />
-        <meta name="keywords" content="<?php
-if (is_singular()): echo wp_get_post_tags($post->ID) . 'dinhkhanhdk, dinhkhanh, tran dinh khanh, khi moc, mốc, khimoc';
-else : echo 'dinhkhanhdk, dinhkhanh, tran dinh khanh, khi moc, mốc, khimoc';
-endif;
-?>">
         <meta name="author" content="Trần Đình Khánh">
         <meta name="viewport" content="width=device-width" />
         <meta property="fb:app_id" content="391869864192445" />
@@ -170,6 +153,13 @@ endif;
                                 <li>
                                     <a href="<?php echo get_home_url(); ?>/update-profile/">Cập nhật thông tin</a>
                                 </li>
+                                <?php
+                                if ($user_level == 10) {
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo get_home_url() . '/user/'; ?>">Quản lý thành viên</a>
+                                    </li>
+                                <?php } ?>
                                 <li>
                                     <a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Thoát</a>
                                 </li>

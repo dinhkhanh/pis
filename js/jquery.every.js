@@ -1,5 +1,9 @@
 var j = jQuery.noConflict();
-
+var map;
+var geocoder;
+var centerChangedLast;
+var reverseGeocodedLast;
+var currentReverseGeocodeResponse;
 function initialize() {
     var directionsService = new google.maps.DirectionsService(),
     directionsDisplay = new google.maps.DirectionsRenderer(),
@@ -28,7 +32,6 @@ function initialize() {
                     directionsDisplay.setDirections(result);
                 }
             });
-
         }
         else {
             return null;
@@ -38,13 +41,10 @@ function initialize() {
     if(address) {
         address = address.value;
     } else {
-        address="184 Nguyễn Văn Linh, Đà Nẵng, Việt Nam"
-    };
-    // Check for geolocation support
+        address="Đại học Duy Tân, Nguyễn Văn Linh, Đà Nẵng, Việt Nam"
+    }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            // Success!
-
             createMap({
                 coords : false,
                 zoom: 16,
@@ -54,7 +54,6 @@ function initialize() {
             });
         },
         function () {
-            // Gelocation fallback
             createMap({
                 coords : false,
                 zoom: 16,
@@ -66,7 +65,6 @@ function initialize() {
         );
     }
     else {
-        // No geolocation fallback
         createMap({
             coords : false,
             zoom: 15,
@@ -75,8 +73,115 @@ function initialize() {
             address: address
         });
     }
+    geocoder = new google.maps.Geocoder();
+    setupEvents();
+    centerChanged();
+}
+function setupEvents() {
+    reverseGeocodedLast = new Date();
+    centerChangedLast = new Date();
+    setInterval(function() {
+        if((new Date()).getSeconds() - centerChangedLast.getSeconds() > 1) {
+            if(reverseGeocodedLast.getTime() < centerChangedLast.getTime())
+                reverseGeocode();
+        }
+    }, 1000);
+
+    google.maps.event.addListener(map, 'center_changed', centerChanged);
+    google.maps.event.addDomListener(document.getElementById('crosshair'),'dblclick', function() {
+        map.setZoom(map.getZoom() + 1);
+    });
+
 }
 
+function getCenterLatLngText() {
+    return '(' + map.getCenter().lat() +', '+ map.getCenter().lng() +')';
+}
+
+function centerChanged() {
+    centerChangedLast = new Date();
+    currentReverseGeocodeResponse = null;
+}
+
+function reverseGeocode() {
+    reverseGeocodedLast = new Date();
+    geocoder.geocode({
+        latLng:map.getCenter()
+    },reverseGeocodeResult);
+}
+
+function reverseGeocodeResult(results, status) {
+    currentReverseGeocodeResponse = results;
+    if(status == 'OK') {
+        if(results.length != 0) {
+            currentReverseGeocodeResponse = results[0].formatted_address;
+        }
+    }
+}
+
+function geocode() {
+    var address = document.getElementById("address").value;
+    geocoder.geocode({
+        'address': address,
+        'partialmatch': true
+    }, geocodeResult);
+
+    var directionsService = new google.maps.DirectionsService(),
+    directionsDisplay = new google.maps.DirectionsRenderer(),
+    des='';
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            des = position.coords.latitude +","+ position.coords.longitude;
+        });
+        var travel = {
+            origin : des,
+            destination : address,
+            travelMode : google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsDisplay.setMap(map);
+        if (document.getElementById("map_route")!=null) {
+            directionsDisplay.setPanel(document.getElementById("map_route"));
+        }
+        directionsService.route(travel, function(result, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(result);
+            }
+        });
+    }
+}
+
+function geocodeResult(results, status) {
+    if (status == 'OK' && results.length > 0) {
+        map.fitBounds(results[0].geometry.viewport);
+        addMarkerAtCenter();
+    } else {
+        alert("Geocode was not successful for the following reason: " + status);
+    }
+}
+
+
+function addMarkerAtCenter() {
+    var marker = new google.maps.Marker({
+        position: map.getCenter(),
+        map: map
+    });
+
+    var text = document.getElementById("address").value.toUpperCase();
+    if(currentReverseGeocodeResponse) {
+        var addr = '';
+        if(currentReverseGeocodeResponse.size == 0) {
+            addr = 'None';
+        } else {
+            addr = currentReverseGeocodeResponse[0].formatted_address;
+        }
+        text = text + '<br>' + 'address: <br>' + addr;
+    }
+
+    var infowindow = new google.maps.InfoWindow({
+        content: text
+    });
+    infowindow.open(map,marker);
+}
 function loadScript() {
     var script = document.createElement("script");
     script.type = "text/javascript";

@@ -22,7 +22,7 @@ get_header();
                     exit();
                 } else {
                     echo "<h2>Đăng nhập thành công.</h2> <p>Click <a href='" . get_option('siteurl') . "'>vào đây</a> để trở về trang chủ.</p>";
-                    exit();
+                    wp_redirect(home_url());
                 }
             }
         } else {

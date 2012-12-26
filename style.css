@@ -483,7 +483,7 @@ input[type="text"], input[type="password"], textarea {
 #branding .only-search #s {
     width: 90px;
     float: left;
-    height: 30px;
+    height: 24px;
 }
 #branding .only-search #s:focus {
     width: 193px;
@@ -1500,7 +1500,6 @@ nav#colophon ul li, #recent_post ul li {
 }
 img#logo{
     margin: 5px 20px 0;
-    padding-bottom: 7px;
 }
 .notify_bar {
     float: left;
@@ -2557,6 +2556,17 @@ img.post_thumb {
     line-height: 12px;
     font-size: 11px;
     font-family: Tahoma;
+}
+#map_controller{
+    position: absolute;
+    z-index: 9999;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 50px;
+    background-color: #fff;
+    padding: 5px 10px;
+
 }
 
 /********************** PROFILE **************/

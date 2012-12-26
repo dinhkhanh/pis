@@ -52,14 +52,14 @@ global $wpdb, $user_ID;
             <?php
             if (get_option('users_can_register')) { //Check whether user registration is enabled by the administrator
                 ?>
-                <h2>Register</h2>
+                <h2>Đăng ký</h2>
                 <form id="wp_signup_form" action="" method="post">
                     <label for="username">Tài khoản:</label>
                     <input type="text" name="username" class="text" value="" placeholder="Username"/>
                     <label for="email">Email:</label>
                     <input type="text" name="email" class="text" value="" placeholder="Email address"/>
                     <p></p>
-                    <input type="submit" id="submitbtn" name="submit" value="Register" />
+                    <input type="submit" id="submitbtn" name="submit" value="Đăng ký" />
                     <p>Đã có tài khoản? <a href="<?php echo get_home_url(); ?>/login">Đăng nhập</a></p>
                     <div class="clearfix"></div>
                 </form>
