@@ -1,4 +1,11 @@
-var j = jQuery.noConflict();
-j(document).ready(function() {
-	j('html, body').animate({scrollTop: 272}, 500, "easeInOutExpo");
+jQuery(document).ready(function ($) {
+    $(function(){
+        $('#place_slider').nivoSlider({
+            effect: 'fade',
+            directionNav: false, // Next & Prev navigation
+            controlNav: false, // 1,2,3... navigation
+            randomStart: true // Start on a random slide
+        });
+    });
+
 });
