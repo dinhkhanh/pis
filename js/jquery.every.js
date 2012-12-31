@@ -41,7 +41,7 @@ function initialize() {
     if(address) {
         address = address.value;
     } else {
-        address="Đại học Duy Tân, Nguyễn Văn Linh, Đà Nẵng, Việt Nam"
+        address="Đại học Duy Tân, K7/25 Quang Trung, Hải Châu, Đà Nẵng, Việt Nam"
     }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {

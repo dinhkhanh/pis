@@ -18,7 +18,7 @@ $postID = $post->ID * -1;
         <table>
             <tr>
                 <th>Xác thực: </th>
-                <td><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'This place is verified.' : 'This place is not verified.' ?>"></span></td>
+                <td><span class="place-verified verified<?php echo get_post_meta($post->ID, 'verified', true); ?>" title="<?php echo get_post_meta($post->ID, 'verified', true) == 'on' ? 'Địa điểm đã được xác thực.' : 'Địa điểm chưa được xác thực.' ?>"></span></td>
             </tr>
             <tr>
                 <th>Xếp hạng: </th>
@@ -38,7 +38,7 @@ $postID = $post->ID * -1;
             </tr>
             <tr>
                 <th>Người tạo: &nbsp; </th>
-                <td><?php echo get_the_author(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
+                <td><?php the_author_posts_link(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
             </tr>
         </table>
     </div>
@@ -101,7 +101,7 @@ wp_reset_query();
     <div class="entry-content">
         <table>
             <tr>
-                <th>Business type:</th>
+                <th>Lĩnh vực:</th>
                 <td><?php
 $categories = get_the_terms($post->ID, 'places');
 $separator = ' ';
@@ -113,19 +113,19 @@ if ($categories) {
 ?></td>
             </tr>
             <tr>
-                <th>Advantage: </th>
+                <th>Ưu điểm: </th>
                 <td><?php echo get_post_meta($post->ID, 'pros', true); ?></td>
             </tr>
             <tr>
-                <th>Weakness: </th>
+                <th>Nhược điểm: </th>
                 <td><?php echo get_post_meta($post->ID, 'cons', true); ?></td>
             </tr>
             <tr>
-                <th>Main Products: </th>
+                <th>Mặt hàng: </th>
                 <td><?php echo get_post_meta($post->ID, 'mainmenu', true); ?></td>
             </tr>
             <tr>
-                <th>Details: </th>
+                <th>Chi tiết: </th>
                 <td><?php the_content(); ?></td>
             </tr>
         </table>

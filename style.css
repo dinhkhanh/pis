@@ -544,6 +544,18 @@ input#s {
     -khtml-border-radius: 3px;
     border-radius: 3px;
 }
+img.avatar, img.middle-align{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    vertical-align: middle;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,0.1), 0 1px 5px rgba(0,0,0,0.15);
+    -ms-box-shadow: 0 0 1px rgba(0,0,0,0.1), 0 1px 5px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 0 1px rgba(0,0,0,0.1), 0 1px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.15);
+}
 .nickname {
     position: absolute;
     left: 5px;
@@ -744,6 +756,9 @@ input#s {
     line-height: 2.6em;
     text-transform: uppercase;
 }
+.widget th {
+    font-size: 10px;
+}
 /*.page .entry-content th {
     letter-spacing: 0;
     text-transform: none;
@@ -805,7 +820,8 @@ input#s {
     color: #555;
     font-size: 36px;
     font-weight: 100;
-    line-height: 48px
+    line-height: 48px;
+    width: 85%;
 }
 .single .entry-header .entry-meta {
     top: 8em;

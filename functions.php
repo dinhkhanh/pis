@@ -663,7 +663,7 @@ function hwl_home_pagesize($query)
             'event',
             'place'
         ));
-        $query->set('orderby', 'rand');
+        //$query->set('orderby', 'rand');
         $query->set('ignore_sticky_posts', 1);
         return;
     }

@@ -21,7 +21,7 @@ $postID = $post->ID*-1;
             </tr>
             <tr>
                 <th>Người tạo: &nbsp; </th>
-                <td><?php echo get_the_author(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
+                <td><?php the_author_posts_link(); ?>&nbsp;<span class="user-badge <?php echo get_user_class(get_the_author_meta('ID')); ?>" title="<?php echo get_user_class(get_the_author_meta('ID')); ?>"></span></td>
             </tr>
         </table>
     </div>

@@ -46,17 +46,17 @@
             the_excerpt();
       }?>
       <?php if ( 'event' == get_post_type() ) : ?>
-        <p stylte="display: block; float: left;">Location:
+        <p stylte="display: block; float: left;">Địa điểm:
         <?php echo get_post_meta($post->ID, 'location', true); ?>
         <br />
-        End Date:
+        Kết thúc:
         <?php echo get_post_meta($post->ID, 'end_date', true); ?>
         </p>
       <?php endif; ?>
       <?php if ('place' == get_post_type()) { ?>
-          <p style="display: block; float: left;">Address:
+          <p style="display: block; float: left;">Địa chỉ:
             <?php echo get_post_meta($post->ID, 'location', true); ?><br />
-            Main products:
+            Mặt hàng:
               <?php echo get_post_meta($post->ID, 'mainmenu', true); ?></p>
            <?php } ?>
     <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>
