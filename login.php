@@ -6,11 +6,16 @@
 get_header();
 ?>
 
-<div id="login-page">
-    <?php
-    global $user_ID;
-    if (!$user_ID) {
+
+<?php
+global $user_ID;
+if (!$user_ID) {
+    ?>
+
+    <div id = "login-page">
+        <?php
         if ($_POST) {
+            //check nonce
             if (empty($_POST['log'])) {
                 echo "<p>Tài khoản không được để trống.</p>  <p><a href='" . get_option('siteurl') . "/login'>Thử lại?</a><p>";
             } else if (empty($_POST['pwd'])) {
@@ -28,7 +33,7 @@ get_header();
         } else {
             ?>
             <?php if (have_posts()) : ?>
-                <?php while (have_posts()) : the_post(); ?>
+            <?php while (have_posts()) : the_post(); ?>
                     <h2>Đăng nhập</h2>
                     <form action="" method="post">
                         <label for="log">Tài khoản: </label>
@@ -46,13 +51,15 @@ get_header();
                         <div class="clearfix"></div>
                     </form>
                 <?php endwhile; ?>
-            <?php else : ?>
+                <?php else : ?>
                 <h2><?php _e('Không tìm thấy'); ?></h1>
                 <?php endif; ?>
-        </div><!-- login-page -->
-        <?php
-        get_footer();
-    }
+                <?php
+                get_footer();
+            }
+            ?>
+    </div><!-- login-page -->
+    <?php
 }
 
 else {
